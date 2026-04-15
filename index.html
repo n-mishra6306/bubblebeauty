@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>BubbleBeauty — Magical Beauty Finds</title>
+  <!-- Google Fonts + Tailwind CSS + AOS + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%);
+      color: #2b2a2a;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    /* Animated Flower Background */
+    .flower-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .flower {
+      position: absolute;
+      opacity: 0.15;
+      transition: all 0.3s ease;
+      animation: float 20s infinite ease-in-out;
+    }
+    
+    .flower svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    /* Aging effect on scroll */
+    .flower.aged {
+      filter: sepia(0.6) hue-rotate(-20deg) brightness(0.7);
+      opacity: 0.25;
+      transform: scale(0.95);
+    }
+    
+    /* Main content relative to background */
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    h1, h2, h3, .serif, .logo-font {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .glass-nav {
+      background: rgba(255, 248, 250, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 182, 193, 0.4);
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 40px -12px rgba(255, 105, 180, 0.3);
+    }
+    
+    .img-zoom {
+      overflow: hidden;
+      border-radius: 1.25rem;
+    }
+    
+    .img-zoom img {
+      transition: transform 0.6s ease;
+    }
+    
+    .img-zoom:hover img {
+      transform: scale(1.08);
+    }
+    
+    .filter-active {
+      background-color: #ffb6c1 !important;
+      color: #fff !important;
+      border-color: #ff69b4 !important;
+    }
+    
+    .star-rating {
+      color: #ffb347;
+      letter-spacing: 2px;
+    }
+    
+    .sidebar-glass {
+      background: rgba(255, 240, 245, 0.8);
+      backdrop-filter: blur(8px);
+      border-radius: 1.5rem;
+    }
+    
+    input, textarea, select {
+      transition: all 0.2s;
+    }
+    
+    input:focus, textarea:focus {
+      border-color: #ffb6c1;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.3);
+    }
+    
+    .btn-pulse {
+      animation: btnPulse 2s infinite;
+    }
+    
+    @keyframes btnPulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 105, 180, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); }
+    }
+    
+    /* Floating bubbles animation */
+    .bubble {
+      position: fixed;
+      bottom: -50px;
+      background: radial-gradient(circle, rgba(255,182,193,0.6), rgba(255,105,180,0.2));
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      animation: rise linear infinite;
+    }
+    
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 0.6; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+    
+    /* Price Range Slider Styles */
+    input[type="range"] {
+      -webkit-appearance: none;
+      background: #ffb6c1;
+      border-radius: 10px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #ff69b4;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Animated Flower Background -->
+  <div class="flower-bg" id="flowerBg"></div>
+
+  <!-- Sticky Header + Navigation -->
+  <header class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 flex flex-wrap items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-heart text-rose-400 text-2xl"></i>
+        <span class="text-2xl logo-font font-semibold tracking-tight text-rose-600">Bubble<span class="text-pink-400">Beauty</span></span>
+      </div>
+      <div class="hidden md:flex gap-7 text-stone-600 font-medium">
+        <a href="#" onclick="showPage('collectionPage'); return false;" class="hover:text-rose-500 transition">Home</a>
+        <a href="#" onclick="showPage('shopPage'); return false;" class="hover:text-rose-500 transition">Shop</a>
+        <a href="#" onclick="showPage('journalPage'); return false;" class="hover:text-rose-500 transition">Journal</a>
+        <a href="#" onclick="showPage('aboutPage'); return false;" class="hover:text-rose-500 transition">About</a>
+        <a href="#" onclick="showPage('contactPage'); return false;" class="hover:text-rose-500 transition">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#" class="relative p-2 rounded-full hover:bg-rose-50">
+          <i class="far fa-heart text-stone-600 text-lg"></i>
+        </a>
+        <button class="md:hidden text-2xl text-stone-600" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md pb-5 px-5 flex flex-col gap-4 text-stone-700 border-t border-rose-100">
+      <a href="#" onclick="showPage('collectionPage'); return false;">Home</a>
+      <a href="#" onclick="showPage('shopPage'); return false;">Shop</a>
+      <a href="#" onclick="showPage('journalPage'); return false;">Journal</a>
+      <a href="#" onclick="showPage('aboutPage'); return false;">About</a>
+      <a href="#" onclick="showPage('contactPage'); return false;">Contact</a>
+    </div>
+  </header>
+
+  <main class="pt-28 md:pt-32 content">
+    <!-- COLLECTION PAGE -->
+    <div id="collectionPage" class="max-w-7xl mx-auto px-5 lg:px-8 pb-20">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h1 class="text-4xl md:text-6xl font-serif text-rose-700">🌸 Magical Beauty Finds</h1>
+        <p class="text-stone-500 mt-3 text-lg">Handpicked treasures that make you glow ✨</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-3 mb-12" id="filterButtons">
+        <button data-filter="all" class="filter-chip px-6 py-2 rounded-full bg-white border border-rose-200 text-stone-700 text-sm font-medium hover:bg-rose-100 transition filter-active">All</button>
+        <button data-filter="dresses" class="filter-chip px-6 py-2 rounded-full bg-white border border-rose-200 text-stone-700 text-sm font-medium hover:bg-rose-100 transition">Dresses</button>
+        <button data-filter="makeup" class="filter-chip px-6 py-2 rounded-full bg-white border border-rose-200 text-stone-700 text-sm font-medium hover:bg-rose-100 transition">Makeup</button>
+        <button data-filter="skincare" class="filter-chip px-6 py-2 rounded-full bg-white border border-rose-200 text-stone-700 text-sm font-medium hover:bg-rose-100 transition">Skincare</button>
+        <button data-filter="accessories" class="filter-chip px-6 py-2 rounded-full bg-white border border-rose-200 text-stone-700 text-sm font-medium hover:bg-rose-100 transition">Accessories</button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="collectionGrid"></div>
+    </div>
+
+    <!-- SHOP PAGE -->
+    <div id="shopPage" class="max-w-7xl mx-auto px-5 lg:px-8 pb-20 hidden">
+      <div class="flex flex-col lg:flex-row gap-10">
+        <aside class="lg:w-1/4 space-y-6">
+          <div class="sidebar-glass p-5 rounded-2xl"><h3 class="font-semibold text-stone-800">Price Range (₹)</h3><input type="range" min="0" max="8000" step="100" id="priceRange" class="w-full mt-2 accent-rose-400"><div class="flex justify-between text-sm mt-2"><span>₹0</span><span id="priceValue">₹8000</span></div></div>
+          <div class="sidebar-glass p-5 rounded-2xl"><h3 class="font-semibold">Categories</h3><div class="space-y-2 mt-3"><label><input type="checkbox" class="category-filter" value="dresses"> Dresses</label><br><label><input type="checkbox" class="category-filter" value="makeup"> Makeup</label><br><label><input type="checkbox" class="category-filter" value="skincare"> Skincare</label><br><label><input type="checkbox" class="category-filter" value="accessories"> Accessories</label></div></div>
+          <div class="sidebar-glass p-5 rounded-2xl"><h3 class="font-semibold">Sort by</h3><select id="sortSelect" class="w-full mt-2 p-2 rounded-lg border border-rose-100"><option value="default">Featured</option><option value="priceLow">Price: Low to High</option><option value="priceHigh">Price: High to Low</option></select></div>
+        </aside>
+        <div class="lg:w-3/4"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7" id="shopGrid"></div></div>
+      </div>
+    </div>
+
+    <!-- JOURNAL PAGE -->
+    <div id="journalPage" class="max-w-6xl mx-auto px-5 lg:px-8 pb-20 hidden">
+      <div class="text-center mb-12"><h1 class="text-4xl font-serif text-rose-600">🌸 Beauty Journal</h1><p class="text-stone-500">Glow tips, stories & magic</p></div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blogGrid"></div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="aboutPage" class="max-w-5xl mx-auto px-5 lg:px-8 pb-20 hidden">
+      <div class="text-center mb-12"><h1 class="text-4xl font-serif text-rose-600">Our Story</h1><div class="w-20 h-0.5 bg-rose-300 mx-auto mt-3"></div></div>
+      <div class="grid md:grid-cols-2 gap-12 items-center"><img class="rounded-3xl shadow-xl" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600" alt="founder"><div><h2 class="text-2xl font-serif">Sophie — founder & curator</h2><p class="text-stone-600 mt-4 leading-relaxed">BubbleBeauty was born from a dream to make every woman feel magical. Each product is handpicked with love, tested for real life, and wrapped in joy.</p><div class="mt-6 flex gap-3"><span class="bg-pink-100 px-4 py-2 rounded-full text-sm">✨ Self-care advocate</span><span class="bg-rose-50 px-4 py-2 rounded-full text-sm">💖 Beauty curator</span></div></div></div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contactPage" class="max-w-3xl mx-auto px-5 lg:px-8 pb-20 hidden">
+      <div class="text-center mb-10"><h1 class="text-4xl font-serif text-rose-600">Let’s Connect</h1><p class="text-stone-500">We'd love to hear from you</p></div>
+      <form id="contactForm" class="bg-white/60 backdrop-blur-sm p-8 rounded-3xl shadow-sm border border-rose-100 space-y-5"><div><input type="text" placeholder="Your name" class="w-full p-3 rounded-xl border border-stone-200" required></div><div><input type="email" placeholder="Email address" class="w-full p-3 rounded-xl border border-stone-200" required></div><div><textarea rows="4" placeholder="Your message..." class="w-full p-3 rounded-xl border border-stone-200"></textarea></div><button type="submit" class="w-full bg-rose-500 text-white py-3 rounded-xl hover:bg-rose-600 transition">Send Message 💌</button></form>
+    </div>
+  </main>
+
+  <footer class="bg-stone-900 text-stone-400 py-12 mt-12">
+    <div class="max-w-7xl mx-auto px-5 grid grid-cols-1 md:grid-cols-4 gap-8"><div><span class="text-white text-xl font-serif">Bubble<span class="text-pink-400">Beauty</span></span><p class="text-sm mt-2">Magical finds for your soul.</p></div><div><h4 class="text-white font-semibold">Explore</h4><ul class="text-sm space-y-2 mt-3"><li><a href="#" onclick="showPage('shopPage'); return false;">Shop</a></li><li><a href="#" onclick="showPage('journalPage'); return false;">Journal</a></li></ul></div><div><h4 class="text-white font-semibold">Support</h4><ul class="text-sm space-y-2 mt-3"><li><a href="#" onclick="showPage('contactPage'); return false;">Contact</a></li></ul></div><div><p class="text-xs italic">*Secure payments via Razorpay</p></div></div><div class="text-center text-xs pt-8 border-t border-stone-800 mt-8">© 2025 BubbleBeauty — All rights reserved. ✨</div>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 30 });
+
+    // PRODUCT DATABASE (Prices in Rupees)
+    const products = [
+      { id:1, title:"Silk Satin Slip Dress", category:"dresses", price:5699, rating:5, img:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400", desc:"Luxury satin, adjustable straps." },
+      { id:2, title:"Cloud Skin Blush + Glow", category:"makeup", price:1999, rating:4.5, img:"https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400", desc:"Dewy finish, viral sensation" },
+      { id:3, title:"Glass Skin Retinol Serum", category:"skincare", price:3499, rating:5, img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400", desc:"anti-aging, glass skin effect" },
+      { id:4, title:"Gold Hoop Set", category:"accessories", price:2499, rating:4, img:"https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=400", desc:"3 sizes, timeless" },
+      { id:5, title:"Velvet Bow Mini Dress", category:"dresses", price:7499, rating:4.8, img:"https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=400", desc:"romantic & chic" },
+      { id:6, title:"Luminous Foundation", category:"makeup", price:3199, rating:4.7, img:"https://images.unsplash.com/photo-1631730359585-38a4935cbec4?w=400", desc:"lightweight, medium coverage" },
+      { id:7, title:"Hydrating Face Mist", category:"skincare", price:1499, rating:4.6, img:"https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400", desc:"instant glow boost" },
+      { id:8, title:"Pearl Hair Claw", category:"accessories", price:999, rating:4.9, img:"https://images.unsplash.com/photo-1584273143981-41a073b6c3b9?w=400", desc:"elegant updo essential" }
+    ];
+
+    // Razorpay Links
+    const BEAUTY_PAYMENT_LINK = "https://rzp.io/rzp/00jNZIK";
+    const DEFAULT_PAYMENT_LINK = "https://rzp.io/rzp/b9rSVPE";
+
+    // Direct Buy Function (No Cart)
+    function buyNow(product) {
+      const paymentLink = (product.category === 'makeup' || product.category === 'skincare') 
+        ? BEAUTY_PAYMENT_LINK 
+        : DEFAULT_PAYMENT_LINK;
+      
+      // Store purchase info for tracking
+      const purchaseInfo = {
+        product: product.title,
+        price: product.price,
+        category: product.category,
+        timestamp: new Date().toISOString()
+      };
+      sessionStorage.setItem('pendingPurchase', JSON.stringify(purchaseInfo));
+      
+      // Show magical toast
+      showToast(`✨ Redirecting to secure payment for ${product.title}...`, 3000);
+      
+      // Open payment link
+      window.open(paymentLink, '_blank');
+    }
+
+    function showToast(msg, duration = 2000) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-rose-500 text-white shadow-xl rounded-full px-6 py-3 text-sm z-50 transition-all';
+      toast.innerText = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), duration);
+    }
+
+    // Format price in Indian Rupees
+    function formatPrice(price) {
+      return '₹' + price.toLocaleString('en-IN');
+    }
+
+    // --- Render Functions with Direct Buy Buttons ---
+    function renderCollectionPage() {
+      const container = document.getElementById('collectionGrid');
+      if (!container) return;
+      const activeFilter = document.querySelector('.filter-chip.filter-active')?.dataset.filter || 'all';
+      let filtered = activeFilter === 'all' ? products : products.filter(p => p.category === activeFilter);
+      container.innerHTML = filtered.map(p => `
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-md card-hover border border-pink-100">
+          <div class="img-zoom"><img loading="lazy" src="${p.img}" class="w-full h-64 object-cover"></div>
+          <div class="p-4"><h3 class="font-semibold text-lg">${p.title}</h3><div class="star-rating text-sm">${'★'.repeat(Math.floor(p.rating))}${p.rating%1?'½':''}</div><p class="text-stone-500 text-sm mt-1">${p.desc}</p><div class="flex justify-between items-center mt-3"><span class="font-bold text-rose-600">${formatPrice(p.price)}</span><button onclick='buyNow(${JSON.stringify(p)})' class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-full text-sm transition shadow-md hover:shadow-lg flex items-center gap-2"><i class="fas fa-bolt"></i> Buy Now</button></div></div></div>
+      `).join('');
+    }
+
+    function renderShopPage() {
+      const shopGrid = document.getElementById('shopGrid');
+      if (!shopGrid) return;
+      let filtered = [...products];
+      const maxPrice = parseInt(document.getElementById('priceRange')?.value || 8000);
+      const checkedCats = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
+      if (checkedCats.length) filtered = filtered.filter(p => checkedCats.includes(p.category));
+      filtered = filtered.filter(p => p.price <= maxPrice);
+      const sortBy = document.getElementById('sortSelect')?.value;
+      if (sortBy === 'priceLow') filtered.sort((a,b)=>a.price-b.price);
+      if (sortBy === 'priceHigh') filtered.sort((a,b)=>b.price-a.price);
+      shopGrid.innerHTML = filtered.map(p => `
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md card-hover border border-pink-100">
+          <div class="img-zoom"><img loading="lazy" src="${p.img}" class="w-full h-56 object-cover"></div>
+          <div class="p-4"><div class="flex justify-between"><h3 class="font-semibold">${p.title}</h3><span class="text-rose-600 font-bold">${formatPrice(p.price)}</span></div><div class="star-rating text-xs">${'★'.repeat(Math.floor(p.rating))}</div><button onclick='buyNow(${JSON.stringify(p)})' class="w-full mt-3 bg-rose-500 hover:bg-rose-600 text-white py-2 rounded-full text-sm transition flex items-center justify-center gap-2"><i class="fas fa-bolt"></i> Buy Now</button></div></div>
+      `).join('');
+    }
+
+    function renderJournal() {
+      const posts = [{title:"5 Summer Dresses That Go Viral", category:"fashion", excerpt:"TikTok's top picks", img:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400"},{title:"Glass Skin Routine", category:"beauty", excerpt:"K-beauty secrets", img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"},{title:"Minimalist Capsule Wardrobe", category:"lifestyle", excerpt:"Less clutter", img:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400"}];
+      const container = document.getElementById('blogGrid');
+      if (container) container.innerHTML = posts.map(p=>`<div class="bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-md card-hover border border-pink-100"><img class="h-56 w-full object-cover" src="${p.img}"><div class="p-5"><h3 class="text-xl font-serif mt-1">${p.title}</h3><p class="text-stone-500 mt-2">${p.excerpt}</p><a href="#" class="inline-block mt-4 text-rose-500 text-sm">Read more →</a></div></div>`).join('');
+    }
+
+    // Page Navigation
+    const pages = ['collectionPage','shopPage','journalPage','aboutPage','contactPage'];
+    window.showPage = function(pageId) {
+      pages.forEach(p => document.getElementById(p).classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+      window.scrollTo(0, 0);
+      if (pageId === 'collectionPage') renderCollectionPage();
+      if (pageId === 'shopPage') renderShopPage();
+      if (pageId === 'journalPage') renderJournal();
+    };
+
+    // Event Listeners
+    document.getElementById('filterButtons')?.addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-chip')) {
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('filter-active','bg-rose-100'));
+        e.target.classList.add('filter-active','bg-rose-100');
+        renderCollectionPage();
+      }
+    });
+    
+    const priceSlider = document.getElementById('priceRange');
+    if (priceSlider) {
+      priceSlider.addEventListener('input', (e) => { 
+        document.getElementById('priceValue').innerText = '₹' + parseInt(e.target.value).toLocaleString('en-IN'); 
+        renderShopPage(); 
+      });
+    }
+    
+    document.querySelectorAll('.category-filter').forEach(cb => cb.addEventListener('change', () => renderShopPage()));
+    document.getElementById('sortSelect')?.addEventListener('change', () => renderShopPage());
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('hidden'));
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); alert("💌 Message sent! We'll reply soon."); e.target.reset(); });
+
+    // Create Flower Background
+    function createFlowers() {
+      const container = document.getElementById('flowerBg');
+      const flowerSvg = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="#ffb6c1"/><circle cx="35" cy="35" r="12" fill="#ff69b4"/><circle cx="65" cy="35" r="12" fill="#ff69b4"/><circle cx="35" cy="65" r="12" fill="#ff69b4"/><circle cx="65" cy="65" r="12" fill="#ff69b4"/><circle cx="50" cy="50" r="8" fill="#ffeb3b"/></svg>`;
+      
+      for (let i = 0; i < 60; i++) {
+        const flower = document.createElement('div');
+        flower.className = 'flower';
+        const size = 40 + Math.random() * 80;
+        flower.style.width = size + 'px';
+        flower.style.height = size + 'px';
+        flower.style.left = Math.random() * 100 + '%';
+        flower.style.top = Math.random() * 100 + '%';
+        flower.style.animationDelay = Math.random() * 20 + 's';
+        flower.style.animationDuration = 15 + Math.random() * 20 + 's';
+        flower.innerHTML = flowerSvg;
+        container.appendChild(flower);
+      }
+    }
+    
+    createFlowers();
+    
+    // Scroll-based flower aging effect
+    window.addEventListener('scroll', () => {
+      const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const flowers = document.querySelectorAll('.flower');
+      flowers.forEach((flower, index) => {
+        const age = Math.min(scrollPercent + (index * 0.002), 1);
+        if (age > 0.3) {
+          flower.classList.add('aged');
+          flower.style.opacity = 0.2 + (age * 0.15);
+          flower.style.transform = `scale(${0.9 + age * 0.1}) rotate(${age * 20}deg)`;
+        } else {
+          flower.classList.remove('aged');
+          flower.style.opacity = 0.15;
+          flower.style.transform = 'scale(1) rotate(0deg)';
+        }
+      });
+    });
+    
+    // Create floating bubbles
+    function createBubble() {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      const size = 20 + Math.random() * 60;
+      bubble.style.width = size + 'px';
+      bubble.style.height = size + 'px';
+      bubble.style.left = Math.random() * 100 + '%';
+      bubble.style.animationDuration = 8 + Math.random() * 12 + 's';
+      bubble.style.animationDelay = Math.random() * 10 + 's';
+      document.body.appendChild(bubble);
+      setTimeout(() => bubble.remove(), 15000);
+    }
+    
+    setInterval(createBubble, 2000);
+    
+    // Initialize
+    showPage('collectionPage');
+    renderJournal();
+  </script>
+</body>
+</html>
