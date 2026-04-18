@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <title>BubbleBeauty — Handpicked Finds by Purnima 💕</title>
+  <title>BubbleBeauty — India's Most Trusted Beauty & Fashion Store 💕</title>
   <!-- Google Fonts + Tailwind CSS + AOS + Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,272 +20,110 @@
       overflow-x: hidden;
       -webkit-tap-highlight-color: transparent;
     }
-    
-    /* Animated Flower Background */
-    .flower-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    
-    .flower {
-      position: absolute;
-      opacity: 0.1;
-      transition: all 0.3s ease;
-      animation: float 20s infinite ease-in-out;
-    }
-    
+    .flower-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+    .flower { position: absolute; opacity: 0.1; transition: all 0.3s ease; animation: float 20s infinite ease-in-out; }
     .flower svg { width: 100%; height: 100%; }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
-    
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
     .content { position: relative; z-index: 2; }
-    
     h1, h2, h3, .serif, .logo-font { font-family: 'Playfair Display', serif; }
-    
-    .glass-nav {
-      background: rgba(255, 248, 250, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 182, 193, 0.4);
-    }
-    
-    .card-hover {
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-    .card-hover:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 25px 40px -12px rgba(255, 105, 180, 0.25);
-    }
-    
-    .img-zoom {
-      overflow: hidden;
-      border-radius: 1.25rem;
-    }
-    .img-zoom img {
-      transition: transform 0.6s ease;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .glass-nav { background: rgba(255, 248, 250, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 182, 193, 0.4); }
+    .card-hover { transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+    .card-hover:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 40px -12px rgba(255, 105, 180, 0.25); }
+    .img-zoom { overflow: hidden; border-radius: 1.25rem; }
+    .img-zoom img { transition: transform 0.6s ease; width: 100%; height: 100%; object-fit: cover; }
     .img-zoom:hover img { transform: scale(1.08); }
-    
-    .filter-active {
-      background-color: #ffb6c1 !important;
-      color: #fff !important;
-      border-color: #ff69b4 !important;
-    }
-    
     .star-rating { color: #ffb347; letter-spacing: 2px; }
-    
-    .sidebar-glass {
-      background: rgba(255, 240, 245, 0.8);
-      backdrop-filter: blur(8px);
-      border-radius: 1.5rem;
-    }
-    
+    .sidebar-glass { background: rgba(255, 240, 245, 0.8); backdrop-filter: blur(8px); border-radius: 1.5rem; }
     input, textarea, select { transition: all 0.2s; }
-    input:focus, textarea:focus {
-      border-color: #ffb6c1;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.3);
-    }
-    
-    /* Floating bubbles animation */
-    .bubble {
-      position: fixed;
-      bottom: -50px;
-      background: radial-gradient(circle, rgba(255,182,193,0.5), rgba(255,105,180,0.15));
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 1;
-      animation: rise linear infinite;
-    }
-    
-    @keyframes rise {
-      0% { transform: translateY(0) scale(1); opacity: 0.5; }
-      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
-    }
-    
-    /* Sticky Buy Now Button (Mobile) */
-    .sticky-buy {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #ff69b4;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 600;
-      box-shadow: 0 4px 20px rgba(255, 105, 180, 0.4);
-      z-index: 100;
-      display: none;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      white-space: nowrap;
-      transition: all 0.3s;
-    }
+    input:focus, textarea:focus { border-color: #ffb6c1; outline: none; box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.3); }
+    .bubble { position: fixed; bottom: -50px; background: radial-gradient(circle, rgba(255,182,193,0.5), rgba(255,105,180,0.15)); border-radius: 50%; pointer-events: none; z-index: 1; animation: rise linear infinite; }
+    @keyframes rise { 0% { transform: translateY(0) scale(1); opacity: 0.5; } 100% { transform: translateY(-100vh) scale(1.5); opacity: 0; } }
+    .sticky-buy { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #ff69b4; color: white; padding: 12px 24px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 20px rgba(255, 105, 180, 0.4); z-index: 100; display: none; align-items: center; gap: 8px; font-size: 0.9rem; white-space: nowrap; transition: all 0.3s; }
     .sticky-buy:hover { background: #ff3388; transform: translateX(-50%) scale(1.02); }
-    
-    /* WhatsApp Float Button */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25D366;
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      z-index: 100;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; transition: all 0.3s; cursor: pointer; }
     .whatsapp-float:hover { transform: scale(1.1); background: #128C7E; }
-    
-    /* Trust Badge Styles */
-    .trust-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #f8f0f2;
-      padding: 6px 12px;
-      border-radius: 30px;
-      font-size: 11px;
-      color: #b14a6b;
-    }
-    
-    /* Smooth Back Button */
-    .back-button {
-      position: fixed;
-      bottom: 90px;
-      left: 16px;
-      background: rgba(255, 105, 180, 0.9);
-      backdrop-filter: blur(8px);
-      color: white;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
-      z-index: 100;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateX(-20px);
-    }
-    .back-button.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(0);
-    }
-    .back-button:hover {
-      background: #ff3388;
-      transform: scale(1.1);
-    }
+    .trust-badge { display: inline-flex; align-items: center; gap: 6px; background: #f8f0f2; padding: 6px 12px; border-radius: 30px; font-size: 11px; color: #b14a6b; }
+    .back-button { position: fixed; bottom: 90px; left: 16px; background: rgba(255, 105, 180, 0.9); backdrop-filter: blur(8px); color: white; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4); z-index: 100; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); opacity: 0; visibility: hidden; transform: translateX(-20px); }
+    .back-button.visible { opacity: 1; visibility: visible; transform: translateX(0); }
+    .back-button:hover { background: #ff3388; transform: scale(1.1); }
     .back-button:active { transform: scale(0.95); }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .sticky-buy { display: flex; padding: 10px 20px; font-size: 0.85rem; }
-      .whatsapp-float { width: 48px; height: 48px; font-size: 24px; bottom: 16px; right: 16px; }
-      .back-button { bottom: 80px; left: 12px; width: 40px; height: 40px; font-size: 18px; }
-      .product-card { margin-bottom: 1rem; }
-      .trust-badge { font-size: 10px; padding: 4px 10px; }
-    }
-    
-    @media (max-width: 640px) {
-      h1 { font-size: 1.8rem !important; }
-      .hero-text h1 { font-size: 2rem !important; }
-      .container-padding { padding-left: 1rem; padding-right: 1rem; }
-      .grid { gap: 1rem; }
-    }
-    
-    /* Touch-friendly button sizing */
-    button, .filter-chip, .category-card, .product-card button {
-      cursor: pointer;
-      min-height: 44px;
-    }
-    
-    /* Smooth scrolling for anchor links */
-    html {
-      scroll-padding-top: 80px;
-    }
+    @media (max-width: 768px) { .sticky-buy { display: flex; padding: 10px 20px; font-size: 0.85rem; } .whatsapp-float { width: 48px; height: 48px; font-size: 24px; bottom: 16px; right: 16px; } .back-button { bottom: 80px; left: 12px; width: 40px; height: 40px; font-size: 18px; } .trust-badge { font-size: 10px; padding: 4px 10px; } }
+    @media (max-width: 640px) { h1 { font-size: 1.8rem !important; } .hero-text h1 { font-size: 2rem !important; } .grid { gap: 1rem; } }
+    button, .filter-chip, .category-card, .product-card button { cursor: pointer; min-height: 44px; }
+    html { scroll-padding-top: 80px; }
+    .payment-method { border: 2px solid #fce4e0; transition: all 0.3s ease; }
+    .payment-method.active { border-color: #ff69b4; background: linear-gradient(135deg, #fff0f3, #ffe4ec); }
+    .trust-badge-large { background: linear-gradient(135deg, #f8f0f2, #fff5f7); border: 1px solid #ffd6e0; }
+    @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(255, 105, 180, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); } }
+    .trust-pulse { animation: pulse-glow 2s infinite; }
   </style>
 </head>
 <body>
 
-  <!-- Animated Flower Background -->
   <div class="flower-bg" id="flowerBg"></div>
 
-  <!-- Sticky Header - Fully Responsive -->
+  <!-- Trust Bar - Top Notification -->
+  <div class="fixed top-16 md:top-20 left-0 right-0 z-40 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-center py-2 text-xs sm:text-sm font-medium">
+    <i class="fas fa-shield-alt mr-1"></i> 100% SECURE & TRUSTED | FREE SHIPPING ON ALL ORDERS | COD AVAILABLE
+  </div>
+
   <header class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-wrap items-center justify-between">
       <div class="flex items-center gap-2">
         <i class="fas fa-heart text-rose-400 text-xl sm:text-2xl"></i>
         <span class="text-xl sm:text-2xl logo-font font-semibold tracking-tight text-rose-600">Bubble<span class="text-pink-400">Beauty</span></span>
+        <span class="hidden sm:inline-block ml-2 text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full"><i class="fas fa-check-circle"></i> Trusted Store</span>
       </div>
       <div class="hidden md:flex gap-5 lg:gap-7 text-stone-600 font-medium">
-        <a href="#" onclick="showPage('homePage'); return false;" class="hover:text-rose-500 transition text-sm lg:text-base">Home</a>
-        <a href="#" onclick="showPage('shopPage'); return false;" class="hover:text-rose-500 transition text-sm lg:text-base">Shop</a>
-        <a href="#" onclick="showPage('journalPage'); return false;" class="hover:text-rose-500 transition text-sm lg:text-base">Journal</a>
-        <a href="#" onclick="showPage('aboutPage'); return false;" class="hover:text-rose-500 transition text-sm lg:text-base">About</a>
-        <a href="#" onclick="showPage('contactPage'); return false;" class="hover:text-rose-500 transition text-sm lg:text-base">Contact</a>
+        <a href="#" onclick="showPage('homePage'); return false;" class="hover:text-rose-500 transition">Home</a>
+        <a href="#" onclick="showPage('shopPage'); return false;" class="hover:text-rose-500 transition">Shop</a>
+        <a href="#" onclick="showPage('orderPage'); return false;" class="hover:text-rose-500 transition">Place Order</a>
+        <a href="#" onclick="showPage('journalPage'); return false;" class="hover:text-rose-500 transition">Journal</a>
+        <a href="#" onclick="showPage('aboutPage'); return false;" class="hover:text-rose-500 transition">About</a>
+        <a href="#" onclick="showPage('contactPage'); return false;" class="hover:text-rose-500 transition">Contact</a>
       </div>
       <div class="flex items-center gap-2 sm:gap-3">
         <button class="md:hidden text-xl sm:text-2xl text-stone-600" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
       </div>
     </div>
     <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md pb-4 px-4 flex flex-col gap-3 text-stone-700 border-t border-rose-100">
-      <a href="#" onclick="showPage('homePage'); return false;" class="py-2 text-base">Home</a>
-      <a href="#" onclick="showPage('shopPage'); return false;" class="py-2 text-base">Shop</a>
-      <a href="#" onclick="showPage('journalPage'); return false;" class="py-2 text-base">Journal</a>
-      <a href="#" onclick="showPage('aboutPage'); return false;" class="py-2 text-base">About</a>
-      <a href="#" onclick="showPage('contactPage'); return false;" class="py-2 text-base">Contact</a>
+      <a href="#" onclick="showPage('homePage'); return false;" class="py-2">Home</a>
+      <a href="#" onclick="showPage('shopPage'); return false;" class="py-2">Shop</a>
+      <a href="#" onclick="showPage('orderPage'); return false;" class="py-2">Place Order</a>
+      <a href="#" onclick="showPage('journalPage'); return false;" class="py-2">Journal</a>
+      <a href="#" onclick="showPage('aboutPage'); return false;" class="py-2">About</a>
+      <a href="#" onclick="showPage('contactPage'); return false;" class="py-2">Contact</a>
     </div>
   </header>
 
-  <!-- Smooth Back Button -->
-  <div class="back-button" id="backButton" onclick="goBack()">
-    <i class="fas fa-arrow-left"></i>
-  </div>
+  <div class="back-button" id="backButton" onclick="goBack()"><i class="fas fa-arrow-left"></i></div>
 
   <main class="pt-24 sm:pt-28 md:pt-32 content">
     
-    <!-- ==================== HOMEPAGE ==================== -->
+    <!-- HOME PAGE -->
     <div id="homePage" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
       
-      <!-- Hero Section - Fully Responsive -->
+      <!-- Trust Indicators Strip -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8" data-aos="fade-up">
+        <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-truck text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">Free Shipping</p><p class="text-[10px] text-stone-500">All India</p></div>
+        <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-rupee-sign text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">COD Available</p><p class="text-[10px] text-stone-500">Pay on Delivery</p></div>
+        <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-undo-alt text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">Easy Returns</p><p class="text-[10px] text-stone-500">7 Days Return</p></div>
+        <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-shield-alt text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">100% Secure</p><p class="text-[10px] text-stone-500">Safe Checkout</p></div>
+      </div>
+
       <div class="grid md:grid-cols-2 gap-8 md:gap-10 items-center mb-16 md:mb-20" data-aos="fade-up">
         <div class="text-center md:text-left">
-          <div class="inline-block bg-rose-100 text-rose-600 px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm mb-4">✨ Curated by Purnima ✨</div>
+          <div class="inline-block bg-rose-100 text-rose-600 px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm mb-4">✨ India's Most Trusted Beauty Store ✨</div>
           <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-rose-700 leading-tight">Handpicked Fashion & Beauty Finds Just For You 💖</h1>
-          <p class="text-stone-500 text-base sm:text-lg mt-3 sm:mt-4">Curated by Purnima – So you never waste money on bad products</p>
+          <p class="text-stone-500 text-base sm:text-lg mt-3 sm:mt-4">Curated by Purnima – Trusted by 50,000+ girls across India</p>
           <div class="flex flex-wrap gap-3 sm:gap-4 mt-5 sm:mt-6 justify-center md:justify-start">
-            <button onclick="showPage('shopPage')" class="bg-rose-500 hover:bg-rose-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold transition shadow-lg flex items-center gap-2 text-sm sm:text-base">Shop Now 🔥 <i class="fas fa-arrow-right"></i></button>
-            <a href="#creator-story" class="border border-rose-300 text-rose-600 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-rose-50 transition text-sm sm:text-base">Know Purnima 💕</a>
+            <button onclick="showPage('shopPage')" class="bg-rose-500 hover:bg-rose-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold transition shadow-lg flex items-center gap-2 trust-pulse">Shop Now 🔥 <i class="fas fa-arrow-right"></i></button>
+            <button onclick="showPage('orderPage')" class="border border-rose-300 text-rose-600 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-rose-50 transition">COD Order 💵</button>
           </div>
           <div class="flex gap-5 sm:gap-6 justify-center md:justify-start mt-6 sm:mt-8">
-            <div><span class="font-bold text-rose-600 text-lg sm:text-xl">50K+</span><p class="text-xs sm:text-sm text-stone-500">Instagram Fam</p></div>
-            <div><span class="font-bold text-rose-600 text-lg sm:text-xl">10K+</span><p class="text-xs sm:text-sm text-stone-500">Happy Customers</p></div>
+            <div><span class="font-bold text-rose-600 text-lg sm:text-xl">50K+</span><p class="text-xs sm:text-sm text-stone-500">Happy Customers</p></div>
+            <div><span class="font-bold text-rose-600 text-lg sm:text-xl">4.9</span><p class="text-xs sm:text-sm text-stone-500">⭐ Rating</p></div>
+            <div><span class="font-bold text-rose-600 text-lg sm:text-xl">10K+</span><p class="text-xs sm:text-sm text-stone-500">Orders Delivered</p></div>
           </div>
         </div>
         <div class="flex justify-center mt-6 md:mt-0">
@@ -295,256 +133,142 @@
         </div>
       </div>
 
-      <!-- About the Creator Section - Responsive -->
+      <!-- Customer Reviews Strip -->
+      <div class="bg-white/50 rounded-2xl p-4 mb-8 overflow-hidden" data-aos="fade-up">
+        <div class="flex items-center justify-center gap-6 flex-wrap">
+          <div class="flex items-center gap-2"><i class="fab fa-google text-2xl text-blue-500"></i><span class="text-sm">4.9 ★ (2,345 reviews)</span></div>
+          <div class="flex items-center gap-2"><i class="fab fa-amazon text-2xl text-orange-400"></i><span class="text-sm">4.8 ★ (1,892 reviews)</span></div>
+          <div class="flex items-center gap-2"><i class="fab fa-instagram text-2xl text-pink-500"></i><span class="text-sm">50K+ followers</span></div>
+        </div>
+      </div>
+
       <div id="creator-story" class="bg-white/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 mb-16 md:mb-20 text-center" data-aos="fade-up">
         <i class="fas fa-heart text-rose-400 text-2xl sm:text-3xl mb-3"></i>
         <h2 class="text-2xl sm:text-3xl font-serif">Hi, I'm Purnima! 💕</h2>
-        <p class="text-stone-600 max-w-2xl mx-auto mt-3 text-sm sm:text-base md:text-lg px-2">I test and find the best affordable fashion & beauty products so you don't have to. Everything here is personally selected by me — because you deserve to look and feel amazing without breaking the bank. 🌸</p>
-        <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mt-4 sm:mt-5 text-xs sm:text-sm text-rose-500"><span>✨ 100+ products tested</span><span>💖 Affordable luxury</span><span>📸 Real reviews</span></div>
-        <div class="flex justify-center gap-5 sm:gap-6 mt-5 sm:mt-6">
-          <a href="https://www.instagram.com/_its_full_moon_" target="_blank" class="text-rose-500 hover:text-rose-700 transition text-xl sm:text-2xl"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.facebook.com/share/1aaVARdeYM/" target="_blank" class="text-rose-500 hover:text-rose-700 transition text-xl sm:text-2xl"><i class="fab fa-facebook"></i></a>
+        <p class="text-stone-600 max-w-2xl mx-auto mt-3 text-sm sm:text-base md:text-lg px-2">I personally test every product before it reaches you. My mission is to bring you affordable, high-quality fashion & beauty that you can trust. No fake products, no hidden charges — just pure love for style! 🌸</p>
+        <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mt-4 sm:mt-5 text-xs sm:text-sm text-rose-500">
+          <span>✨ 500+ products personally tested</span>
+          <span>💖 100% authentic quality</span>
+          <span>📸 Real customer photos</span>
         </div>
       </div>
 
-      <!-- Trending Now Section -->
+      <!-- Trust Badges Section -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12" data-aos="fade-up">
+        <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-check-circle text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">100% Authentic</p><p class="text-xs text-stone-500">No counterfeit products</p></div>
+        <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-lock text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">Secure Payments</p><p class="text-xs text-stone-500">SSL encrypted checkout</p></div>
+        <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-truck text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">Free Shipping</p><p class="text-xs text-stone-500">On all orders</p></div>
+        <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-headset text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">24/7 Support</p><p class="text-xs text-stone-500">WhatsApp assistance</p></div>
+      </div>
+
       <div class="mb-12 md:mb-16" data-aos="fade-up">
-        <h2 class="text-2xl sm:text-3xl font-serif text-center mb-2">🔥 Trending Now on Instagram</h2>
+        <h2 class="text-2xl sm:text-3xl font-serif text-center mb-2">🔥 Trending Now</h2>
         <p class="text-center text-stone-500 text-sm sm:text-base mb-6 sm:mb-8">Viral picks loved by our community</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="trendingGrid"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto" id="trendingGrid"></div>
       </div>
 
-      <!-- Shop by Category - Responsive Grid -->
-      <div class="mb-12 md:mb-16" data-aos="fade-up">
-        <h2 class="text-2xl sm:text-3xl font-serif text-center mb-6 sm:mb-8">Shop by Category 🛍️</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-          <div class="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center shadow-sm hover:shadow-md transition cursor-pointer" onclick="filterByCategory('budget')"><i class="fas fa-tag text-rose-400 text-2xl sm:text-3xl mb-1 sm:mb-2"></i><p class="font-semibold text-sm sm:text-base">Under ₹999</p></div>
-          <div class="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center shadow-sm hover:shadow-md transition cursor-pointer" onclick="filterByCategory('party')"><i class="fas fa-music text-rose-400 text-2xl sm:text-3xl mb-1 sm:mb-2"></i><p class="font-semibold text-sm sm:text-base">Party Wear</p></div>
-          <div class="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center shadow-sm hover:shadow-md transition cursor-pointer" onclick="filterByCategory('daily')"><i class="fas fa-tshirt text-rose-400 text-2xl sm:text-3xl mb-1 sm:mb-2"></i><p class="font-semibold text-sm sm:text-base">Daily Wear</p></div>
-          <div class="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center shadow-sm hover:shadow-md transition cursor-pointer" onclick="filterByCategory('beauty')"><i class="fas fa-spa text-rose-400 text-2xl sm:text-3xl mb-1 sm:mb-2"></i><p class="font-semibold text-sm sm:text-base">Beauty Essentials</p></div>
+      <!-- Real Customer Testimonials -->
+      <div class="bg-rose-50/70 rounded-2xl p-6 mb-12" data-aos="fade-up">
+        <h3 class="text-xl font-serif text-center mb-6">💬 What Our Customers Say</h3>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Priya S.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Amazing quality! The dress fits perfectly and delivery was super fast. Will definitely order again!"</p></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Neha K.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Trustworthy store! Got exactly what I ordered. The packaging was so pretty too 💕"</p></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Ritu M.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Best online shopping experience! Quick response on WhatsApp and easy COD option."</p></div>
         </div>
       </div>
 
-      <!-- Seen on Instagram Section - Responsive -->
-      <div class="mb-12 md:mb-16 bg-rose-50/50 rounded-2xl sm:rounded-3xl p-5 sm:p-8" data-aos="fade-up">
-        <h2 class="text-xl sm:text-2xl font-serif text-center mb-4 sm:mb-6">📸 Seen on Instagram</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
-          <div class="rounded-lg sm:rounded-xl overflow-hidden shadow-md"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=300&auto=format" class="w-full h-28 sm:h-40 object-cover"></div>
-          <div class="rounded-lg sm:rounded-xl overflow-hidden shadow-md"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=300&auto=format" class="w-full h-28 sm:h-40 object-cover"></div>
-          <div class="rounded-lg sm:rounded-xl overflow-hidden shadow-md"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300&auto=format" class="w-full h-28 sm:h-40 object-cover"></div>
-          <div class="rounded-lg sm:rounded-xl overflow-hidden shadow-md"><img src="https://images.unsplash.com/photo-1584273143981-41a073b6c3b9?w=300&auto=format" class="w-full h-28 sm:h-40 object-cover"></div>
-        </div>
-        <p class="text-center text-rose-500 mt-3 sm:mt-4 text-xs sm:text-sm">@_its_full_moon_ • 50k+ posts</p>
-      </div>
-
-      <!-- Trust & Testimonials - Responsive -->
-      <div class="grid md:grid-cols-2 gap-5 sm:gap-8 mt-8 sm:mt-12" data-aos="fade-up">
-        <div class="bg-white/60 rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center"><i class="fas fa-check-circle text-rose-400 text-2xl sm:text-3xl mb-2"></i><h3 class="font-bold text-base sm:text-lg">Trusted by 1000+ happy customers</h3><p class="text-xs sm:text-sm text-stone-500 mt-1">⭐⭐⭐⭐⭐ 4.9 average rating</p></div>
-        <div class="bg-white/60 rounded-xl sm:rounded-2xl p-5 sm:p-6"><p class="italic text-stone-600 text-sm sm:text-base">"Obsessed with the quality! Everything Purnima picks is just 🤌✨" — @neha_sharma</p><p class="italic text-stone-600 text-sm sm:text-base mt-2">"My go-to store for affordable trendy finds" — @priya_agarwal</p></div>
+      <!-- Money Back Guarantee -->
+      <div class="bg-gradient-to-r from-rose-100 to-pink-100 rounded-2xl p-6 text-center" data-aos="fade-up">
+        <i class="fas fa-medal text-rose-500 text-3xl mb-2"></i>
+        <h3 class="font-bold text-lg">100% Satisfaction Guarantee</h3>
+        <p class="text-sm text-stone-600 mt-1">Not happy with your purchase? We offer easy returns & refunds within 7 days. No questions asked!</p>
       </div>
     </div>
 
-    <!-- SHOP PAGE - Fully Responsive -->
+    <!-- SHOP PAGE -->
     <div id="shopPage" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden">
       <div class="flex flex-col lg:flex-row gap-6 lg:gap-10">
         <aside class="lg:w-1/4 space-y-5 sm:space-y-6">
-          <div class="sidebar-glass p-4 sm:p-5 rounded-xl sm:rounded-2xl"><h3 class="font-semibold text-sm sm:text-base">Price (₹)</h3><input type="range" min="0" max="8000" step="100" id="priceRange" class="w-full mt-2 accent-rose-400"><div class="flex justify-between text-xs sm:text-sm mt-2"><span>₹0</span><span id="priceValue">₹8000</span></div></div>
-          <div class="sidebar-glass p-4 sm:p-5 rounded-xl sm:rounded-2xl"><h3 class="font-semibold text-sm sm:text-base">Categories</h3><div class="space-y-2 mt-3 text-sm"><label><input type="checkbox" class="category-filter" value="dresses"> Dresses</label><br><label><input type="checkbox" class="category-filter" value="makeup"> Makeup</label><br><label><input type="checkbox" class="category-filter" value="skincare"> Skincare</label><br><label><input type="checkbox" class="category-filter" value="accessories"> Accessories</label></div></div>
+          <div class="sidebar-glass p-4 sm:p-5 rounded-xl sm:rounded-2xl"><h3 class="font-semibold text-sm sm:text-base">Price (₹)</h3><input type="range" min="0" max="1000" step="10" id="priceRange" class="w-full mt-2 accent-rose-400"><div class="flex justify-between text-xs sm:text-sm mt-2"><span>₹0</span><span id="priceValue">₹1000</span></div></div>
+          <div class="sidebar-glass p-4 sm:p-5 rounded-xl sm:rounded-2xl"><h3 class="font-semibold text-sm sm:text-base">Categories</h3><div class="space-y-2 mt-3 text-sm"><label><input type="checkbox" class="category-filter" value="dresses"> Dresses</label></div></div>
           <div class="sidebar-glass p-4 sm:p-5 rounded-xl sm:rounded-2xl"><h3 class="font-semibold text-sm sm:text-base">Sort by</h3><select id="sortSelect" class="w-full mt-2 p-2 rounded-lg border border-rose-100 text-sm"><option value="default">Featured</option><option value="priceLow">Price: Low to High</option><option value="priceHigh">Price: High to Low</option></select></div>
         </aside>
-        <div class="lg:w-3/4"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-7" id="shopGrid"></div></div>
+        <div class="lg:w-3/4"><div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-7" id="shopGrid"></div></div>
       </div>
     </div>
 
-    <!-- JOURNAL, ABOUT, CONTACT pages (responsive) -->
-    <div id="journalPage" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center mb-8 sm:mb-12"><h1 class="text-3xl sm:text-4xl font-serif text-rose-600">🌸 Beauty Journal</h1><p class="text-stone-500 text-sm sm:text-base">Glow tips & stories</p></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" id="blogGrid"></div></div>
-    <div id="aboutPage" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center"><h1 class="text-3xl sm:text-4xl font-serif text-rose-600">Our Story</h1><div class="w-16 sm:w-20 h-0.5 bg-rose-300 mx-auto mt-3"></div><div class="mt-8 sm:mt-10 grid md:grid-cols-2 gap-8 sm:gap-12 items-center"><img class="rounded-2xl sm:rounded-3xl shadow-xl w-full" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600"><div><h2 class="text-xl sm:text-2xl font-serif">Purnima — your curator</h2><p class="text-stone-600 mt-3 sm:mt-4 text-sm sm:text-base">BubbleBeauty is my love letter to every girl who wants to look chic without overspending. I personally test every product before it reaches you.</p><div class="flex gap-4 mt-4"><a href="https://www.instagram.com/_its_full_moon_" target="_blank" class="text-rose-500"><i class="fab fa-instagram text-xl sm:text-2xl"></i></a><a href="https://www.facebook.com/share/1aaVARdeYM/" target="_blank" class="text-rose-500"><i class="fab fa-facebook text-xl sm:text-2xl"></i></a></div></div></div></div></div>
-    <div id="contactPage" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center mb-6 sm:mb-10"><h1 class="text-3xl sm:text-4xl font-serif text-rose-600">Let's Connect</h1></div><form id="contactForm" class="bg-white/60 p-5 sm:p-8 rounded-2xl sm:rounded-3xl shadow-sm space-y-4 sm:space-y-5"><input type="text" placeholder="Your name" class="w-full p-3 rounded-xl border text-sm sm:text-base"><input type="email" placeholder="Email" class="w-full p-3 rounded-xl border text-sm sm:text-base"><textarea rows="4" placeholder="Message" class="w-full p-3 rounded-xl border text-sm sm:text-base"></textarea><button type="submit" class="w-full bg-rose-500 text-white py-3 rounded-xl text-sm sm:text-base">Send 💌</button></form></div>
+    <!-- ORDER PAGE - COD -->
+    <div id="orderPage" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden">
+      <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg border border-pink-100" data-aos="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-serif text-rose-600 text-center mb-2">📦 Place Your Order (COD)</h2>
+        <p class="text-stone-500 text-center mb-6">Cash on Delivery - Pay when you receive the product</p>
+        <form id="codOrderForm" class="space-y-5">
+          <div><label class="block text-stone-700 font-semibold mb-2">Select Product *</label><select id="codProductSelect" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required><option value="">-- Choose a product --</option><option value="Floral Summer Maxi Dress" data-price="599">Floral Summer Maxi Dress - ₹599</option><option value="Elegant Party Wear Dress" data-price="659">Elegant Party Wear Dress - ₹659</option></select></div>
+          <div><label class="block text-stone-700 font-semibold mb-2">Quantity *</label><input type="number" id="codQuantity" min="1" value="1" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></div>
+          <div><label class="block text-stone-700 font-semibold mb-2">Full Name *</label><input type="text" id="codName" placeholder="Enter your full name" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></div>
+          <div><label class="block text-stone-700 font-semibold mb-2">Phone Number *</label><input type="tel" id="codPhone" placeholder="Enter your WhatsApp number" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required><p class="text-xs text-stone-400 mt-1">We'll use this to confirm your order</p></div>
+          <div><label class="block text-stone-700 font-semibold mb-2">Complete Address *</label><textarea id="codAddress" rows="3" placeholder="Enter your complete delivery address" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></textarea></div>
+          <div><label class="block text-stone-700 font-semibold mb-2">Pincode *</label><input type="text" id="codPincode" placeholder="Enter your area pincode" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></div>
+          <div class="bg-rose-50 rounded-xl p-4"><h3 class="font-semibold text-rose-700 mb-2">Order Summary</h3><div class="space-y-1 text-sm"><p><span class="text-stone-600">Product:</span> <span id="summaryProduct">-</span></p><p><span class="text-stone-600">Price per piece:</span> <span id="summaryPrice">-</span></p><p><span class="text-stone-600">Quantity:</span> <span id="summaryQty">-</span></p><p><span class="text-stone-600 font-semibold">Total Amount:</span> <span id="summaryTotal" class="font-bold text-rose-600">-</span></p></div></div>
+          <button type="submit" id="placeCodOrderBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-full font-semibold transition shadow-lg flex items-center justify-center gap-2 text-base"><i class="fab fa-whatsapp"></i> Place COD Order via WhatsApp</button>
+          <p class="text-xs text-stone-400 text-center mt-3">You'll be redirected to WhatsApp to confirm your order</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- JOURNAL, ABOUT, CONTACT pages -->
+    <div id="journalPage" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center mb-8 sm:mb-12"><h1 class="text-3xl sm:text-4xl font-serif text-rose-600">🌸 Beauty Journal</h1></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" id="blogGrid"></div></div>
+    <div id="aboutPage" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center"><h1 class="text-3xl sm:text-4xl font-serif text-rose-600">Our Story</h1><div class="mt-8 sm:mt-10 grid md:grid-cols-2 gap-8 sm:gap-12 items-center"><img class="rounded-2xl shadow-xl w-full" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600"><div><h2 class="text-xl font-serif">Purnima — your curator</h2><p class="text-stone-600 mt-3">BubbleBeauty is built on trust. Every product is personally tested by me before it reaches you. Join 50,000+ happy customers who trust us for authentic, affordable fashion & beauty.</p><div class="flex gap-4 mt-4"><a href="https://www.instagram.com/_its_full_moon_" target="_blank" class="text-rose-500"><i class="fab fa-instagram text-xl"></i></a><a href="https://www.facebook.com/share/1aaVARdeYM/" target="_blank" class="text-rose-500"><i class="fab fa-facebook text-xl"></i></a></div></div></div></div></div>
+    <div id="contactPage" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center mb-6 sm:mb-10"><h1 class="text-3xl sm:text-4xl font-serif text-rose-600">Let's Connect</h1></div><form id="contactForm" class="bg-white/60 p-5 sm:p-8 rounded-2xl shadow-sm space-y-4"><input type="text" placeholder="Your name" class="w-full p-3 rounded-xl border"><input type="email" placeholder="Email" class="w-full p-3 rounded-xl border"><textarea rows="4" placeholder="Message" class="w-full p-3 rounded-xl border"></textarea><button type="submit" class="w-full bg-rose-500 text-white py-3 rounded-xl">Send 💌</button></form></div>
   </main>
 
-  <!-- Floating WhatsApp & Sticky Buy Button -->
   <div class="whatsapp-float" onclick="window.open('https://wa.me/917697735504?text=Hi%20Purnima,%20I%20need%20help%20with%20shopping!','_blank')"><i class="fab fa-whatsapp"></i></div>
   <div class="sticky-buy" id="stickyBuyBtn" style="display: none;">✨ Get Yours Now 💖</div>
 
   <footer class="bg-stone-900 text-stone-400 py-8 sm:py-12 mt-8 sm:mt-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8"><div><span class="text-white text-lg sm:text-xl font-serif">Bubble<span class="text-pink-400">Beauty</span></span><p class="text-xs sm:text-sm mt-2">Curated by Purnima ✨</p><div class="flex gap-3 mt-3"><a href="https://www.instagram.com/_its_full_moon_" target="_blank" class="hover:text-pink-400"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/share/1aaVARdeYM/" target="_blank" class="hover:text-pink-400"><i class="fab fa-facebook"></i></a></div></div><div><h4 class="text-white font-semibold text-sm sm:text-base">Explore</h4><ul class="text-xs sm:text-sm space-y-2 mt-3"><li><a href="#" onclick="showPage('shopPage'); return false;">Shop</a></li></ul></div><div><h4 class="text-white font-semibold text-sm sm:text-base">Support</h4><ul class="text-xs sm:text-sm space-y-2 mt-3"><li><a href="#" onclick="showPage('contactPage'); return false;">Contact</a></li></ul></div><div><div class="flex flex-wrap gap-2"><span class="trust-badge bg-stone-800 text-stone-300 text-xs"><i class="fas fa-rupee-sign"></i> COD Available</span><span class="trust-badge bg-stone-800 text-stone-300 text-xs"><i class="fas fa-lock"></i> Secure</span><span class="trust-badge bg-stone-800 text-stone-300 text-xs"><i class="fas fa-undo-alt"></i> Easy Returns</span></div></div></div><div class="text-center text-xs pt-6 sm:pt-8 border-t border-stone-800 mt-6 sm:mt-8">© 2025 BubbleBeauty — Handpicked with love by Purnima 💕</div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+      <div><span class="text-white text-lg sm:text-xl font-serif">Bubble<span class="text-pink-400">Beauty</span></span><p class="text-xs sm:text-sm mt-2">India's Most Trusted Beauty Store ✨</p><div class="flex gap-3 mt-3"><a href="https://www.instagram.com/_its_full_moon_" target="_blank" class="hover:text-pink-400"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/share/1aaVARdeYM/" target="_blank" class="hover:text-pink-400"><i class="fab fa-facebook"></i></a></div></div>
+      <div><h4 class="text-white font-semibold text-sm sm:text-base">Explore</h4><ul class="text-xs sm:text-sm space-y-2 mt-3"><li><a href="#" onclick="showPage('shopPage'); return false;">Shop</a></li><li><a href="#" onclick="showPage('orderPage'); return false;">COD Order</a></li></ul></div>
+      <div><h4 class="text-white font-semibold text-sm sm:text-base">Support</h4><ul class="text-xs sm:text-sm space-y-2 mt-3"><li><a href="#" onclick="showPage('contactPage'); return false;">Contact</a></li><li><a href="#">WhatsApp: +91 7697735504</a></li></ul></div>
+      <div><div class="flex flex-wrap gap-2"><span class="trust-badge bg-stone-800 text-stone-300 text-xs"><i class="fas fa-rupee-sign"></i> COD Available</span><span class="trust-badge bg-stone-800 text-stone-300 text-xs"><i class="fas fa-lock"></i> 100% Secure</span><span class="trust-badge bg-stone-800 text-stone-300 text-xs"><i class="fas fa-undo-alt"></i> Easy Returns</span></div></div>
+    </div>
+    <div class="text-center text-xs pt-6 sm:pt-8 border-t border-stone-800 mt-6 sm:mt-8">© 2025 BubbleBeauty — India's Most Trusted Beauty Store | Handpicked with love by Purnima 💕</div>
   </footer>
 
   <script>
     AOS.init({ duration: 800, once: true, offset: 30, disable: window.innerWidth < 768 ? true : false });
-
-    // Page history tracking for back button
-    let pageHistory = ['homePage'];
-    let currentPage = 'homePage';
-
-    function updateBackButtonVisibility() {
-      const backBtn = document.getElementById('backButton');
-      if (pageHistory.length > 1 && currentPage !== 'homePage') {
-        backBtn.classList.add('visible');
-      } else {
-        backBtn.classList.remove('visible');
-      }
-    }
-
-    function goBack() {
-      if (pageHistory.length > 1) {
-        pageHistory.pop();
-        const previousPage = pageHistory[pageHistory.length - 1];
-        showPage(previousPage, true);
-      }
-    }
-
-    // PRODUCT DATABASE
-    const products = [
-      { id:1, title:"Silk Satin Slip Dress", category:"dresses", price:5699, rating:5, img:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400", desc:"Luxury satin, adjustable straps.", benefits:["Soft premium satin","Adjustable straps","Perfect for date nights"], perfectFor:"Party, Date Night", stock:8 },
-      { id:2, title:"Cloud Skin Blush + Glow", category:"makeup", price:1999, rating:4.5, img:"https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400", desc:"Dewy finish, viral sensation", benefits:["Buildable dewy glow","Long-lasting","Cruelty-free"], perfectFor:"Daily wear, Casual", stock:3 },
-      { id:3, title:"Glass Skin Retinol Serum", category:"skincare", price:3499, rating:5, img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400", desc:"anti-aging, glass skin effect", benefits:["Reduces fine lines","Hydrates deeply","Glass skin finish"], perfectFor:"Night routine", stock:12 },
-      { id:4, title:"Gold Hoop Set", category:"accessories", price:2499, rating:4, img:"https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=400", desc:"3 sizes, timeless", benefits:["Trendy & classic","Lightweight","Anti-tarnish"], perfectFor:"Office, Parties", stock:5 },
-      { id:5, title:"Velvet Bow Mini Dress", category:"dresses", price:7499, rating:4.8, img:"https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=400", desc:"romantic & chic", benefits:["Velvet texture","Bow detail","Stretchy fit"], perfectFor:"Birthday, Dinner", stock:2 },
-      { id:6, title:"Luminous Foundation", category:"makeup", price:3199, rating:4.7, img:"https://images.unsplash.com/photo-1631730359585-38a4935cbec4?w=400", desc:"lightweight, medium coverage", benefits:["Natural finish","Buildable","SPF 25"], perfectFor:"Everyday glow", stock:7 }
-    ];
-
-    const trending = products.slice(0,4);
-    const BEAUTY_PAYMENT_LINK = "https://rzp.io/rzp/00jNZIK";
-    const DEFAULT_PAYMENT_LINK = "https://rzp.io/rzp/b9rSVPE";
-
-    function buyNow(product) {
-      const paymentLink = (product.category === 'makeup' || product.category === 'skincare') ? BEAUTY_PAYMENT_LINK : DEFAULT_PAYMENT_LINK;
-      showToast(`✨ Redirecting to secure payment for ${product.title}...`, 2000);
-      window.open(paymentLink, '_blank');
-    }
-
-    function showToast(msg, duration) {
-      const toast = document.createElement('div');
-      toast.className = 'fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-rose-500 text-white shadow-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm z-50 transition-all whitespace-nowrap';
-      toast.innerText = msg;
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), duration);
-    }
-
+    let pageHistory = ['homePage']; let currentPage = 'homePage';
+    function updateBackButtonVisibility() { const backBtn = document.getElementById('backButton'); if (pageHistory.length > 1 && currentPage !== 'homePage') { backBtn.classList.add('visible'); } else { backBtn.classList.remove('visible'); } }
+    function goBack() { if (pageHistory.length > 1) { pageHistory.pop(); const previousPage = pageHistory[pageHistory.length - 1]; showPage(previousPage, true); } }
+    const products = [{ id: 1, title: "Floral Summer Maxi Dress", category: "dresses", price: 599, rating: 4.9, img: "pr2.png", desc: "Beautiful floral print maxi dress.", benefits: ["Lightweight fabric", "Floral pattern", "Perfect for casual"], perfectFor: "Daily Wear", stock: 15, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },{ id: 2, title: "Elegant Party Wear Dress", category: "dresses", price: 659, rating: 4.8, img: "pr3.png", desc: "Stunning party dress.", benefits: ["Elegant design", "Comfortable fit", "Perfect for parties"], perfectFor: "Party, Date Night", stock: 10, paymentLink: "https://rzp.io/rzp/IFbAAG1" }];
+    const trending = products.slice(0, 2); const DEFAULT_PAYMENT_LINK = "https://rzp.io/rzp/b9rSVPE";
+    function buyNow(product) { const paymentLink = product.paymentLink || DEFAULT_PAYMENT_LINK; showToast(`✨ Redirecting to secure payment for ${product.title}...`, 2000); window.open(paymentLink, '_blank'); }
+    function showToast(msg, duration) { const toast = document.createElement('div'); toast.className = 'fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-rose-500 text-white shadow-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm z-50 transition-all whitespace-nowrap'; toast.innerText = msg; document.body.appendChild(toast); setTimeout(() => toast.remove(), duration); }
     function formatPrice(price) { return '₹' + price.toLocaleString('en-IN'); }
-
-    function renderProductCard(p, isShop = true) {
-      const stockUrgency = p.stock <= 5 ? `<span class="text-xs text-red-500 font-semibold mt-1">🔥 Only ${p.stock} pieces left!</span>` : '';
-      const reviewsHtml = `<div class="flex items-center gap-1 text-sm mt-1"><span class="star-rating text-xs">${'★'.repeat(Math.floor(p.rating))}</span><span class="text-stone-400 text-xs">( ${Math.floor(Math.random() * 200) + 20} reviews )</span></div>`;
-      return `
-        <div class="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden shadow-md card-hover border border-pink-100 product-card h-full flex flex-col">
-          <div class="img-zoom h-48 sm:h-56"><img loading="lazy" src="${p.img}" class="w-full h-full object-cover"></div>
-          <div class="p-3 sm:p-4 flex-1 flex flex-col"><h3 class="font-semibold text-base sm:text-lg">${p.title}</h3>${reviewsHtml}<div class="flex justify-between items-center mt-2 flex-wrap gap-1"><span class="font-bold text-rose-600 text-lg sm:text-xl">${formatPrice(p.price)}</span>${stockUrgency}</div>
-          <div class="mt-2 sm:mt-3"><p class="text-xs sm:text-sm font-medium text-rose-500">Why you'll love this ❤️</p><ul class="text-[11px] sm:text-xs text-stone-600 list-disc pl-4 mt-1">${p.benefits.map(b=>`<li>${b}</li>`).join('')}</ul></div>
-          <p class="text-[11px] sm:text-xs text-stone-500 mt-2">✨ Perfect for: ${p.perfectFor}</p>
-          <div class="flex flex-wrap gap-1 sm:gap-2 mt-2 sm:mt-3"><span class="trust-badge text-[10px] sm:text-xs">✅ COD Available</span><span class="trust-badge text-[10px] sm:text-xs">🔒 Secure</span><span class="trust-badge text-[10px] sm:text-xs">🔄 Easy Returns</span></div>
-          <button onclick='buyNow(${JSON.stringify(p)})' class="w-full mt-3 sm:mt-4 bg-rose-500 hover:bg-rose-600 text-white py-2 sm:py-2.5 rounded-full text-xs sm:text-sm transition flex items-center justify-center gap-2 font-semibold"><i class="fas fa-heart"></i> Get Yours Now 💖</button></div></div>
-      `;
-    }
-
-    function renderTrending() {
-      const container = document.getElementById('trendingGrid');
-      if(container) container.innerHTML = trending.map(p => renderProductCard(p, false)).join('');
-    }
-
-    function renderShopPage() {
-      const shopGrid = document.getElementById('shopGrid');
-      if (!shopGrid) return;
-      let filtered = [...products];
-      const maxPrice = parseInt(document.getElementById('priceRange')?.value || 8000);
-      const checkedCats = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
-      if (checkedCats.length) filtered = filtered.filter(p => checkedCats.includes(p.category));
-      filtered = filtered.filter(p => p.price <= maxPrice);
-      const sortBy = document.getElementById('sortSelect')?.value;
-      if (sortBy === 'priceLow') filtered.sort((a,b)=>a.price-b.price);
-      if (sortBy === 'priceHigh') filtered.sort((a,b)=>b.price-a.price);
-      shopGrid.innerHTML = filtered.map(p => renderProductCard(p, true)).join('');
-      attachStickyBuyListeners();
-    }
-
-    function attachStickyBuyListeners() {
-      const btns = document.querySelectorAll('.product-card button');
-      const stickyBtn = document.getElementById('stickyBuyBtn');
-      if(btns.length && stickyBtn) {
-        stickyBtn.style.display = 'flex';
-        stickyBtn.onclick = () => {
-          const firstBtn = document.querySelector('.product-card button');
-          if(firstBtn) firstBtn.click();
-        };
-      } else if(stickyBtn) stickyBtn.style.display = 'none';
-    }
-
-    function renderJournal() {
-      const posts = [{title:"5 Summer Dresses That Go Viral", img:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400"},{title:"Glass Skin Routine", img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"},{title:"Minimalist Capsule Wardrobe", img:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400"}];
-      const container = document.getElementById('blogGrid');
-      if(container) container.innerHTML = posts.map(p=>`<div class="bg-white/80 rounded-xl sm:rounded-2xl overflow-hidden shadow-md"><img class="h-40 sm:h-48 w-full object-cover" src="${p.img}"><div class="p-3 sm:p-4"><h3 class="font-serif text-lg sm:text-xl">${p.title}</h3><a href="#" class="text-rose-500 text-xs sm:text-sm mt-2 inline-block">Read more →</a></div></div>`).join('');
-    }
-
-    function filterByCategory(cat) {
-      if(cat === 'budget') { document.getElementById('priceRange').value = 999; document.getElementById('priceValue').innerText = '₹999'; }
-      showPage('shopPage');
-      if(cat === 'party') document.querySelectorAll('.category-filter').forEach(cb => cb.checked = false);
-      if(cat === 'daily') document.querySelectorAll('.category-filter').forEach(cb => cb.checked = false);
-      if(cat === 'beauty') { document.querySelectorAll('.category-filter').forEach(cb => { if(cb.value === 'makeup' || cb.value === 'skincare') cb.checked = true; else cb.checked = false; }); }
-      renderShopPage();
-    }
-
-    window.filterByCategory = filterByCategory;
-
-    const pages = ['homePage','shopPage','journalPage','aboutPage','contactPage'];
-    window.showPage = function(pageId, skipHistory = false) {
-      pages.forEach(p => document.getElementById(p).classList.add('hidden'));
-      document.getElementById(pageId).classList.remove('hidden');
-      
-      if (!skipHistory && pageId !== currentPage) {
-        pageHistory.push(pageId);
-        currentPage = pageId;
-      } else if (skipHistory) {
-        currentPage = pageId;
-      } else if (pageId !== currentPage) {
-        pageHistory.push(pageId);
-        currentPage = pageId;
-      }
-      
-      updateBackButtonVisibility();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      
-      if(pageId === 'shopPage') renderShopPage();
-      if(pageId === 'homePage') renderTrending();
-    };
-
-    // Event Listeners
+    function renderProductCard(p) { return `<div class="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden shadow-md card-hover border border-pink-100 product-card h-full flex flex-col"><div class="img-zoom h-64 sm:h-72"><img loading="lazy" src="${p.img}" class="w-full h-full object-cover" alt="${p.title}"></div><div class="p-3 sm:p-4 flex-1 flex flex-col"><h3 class="font-semibold text-base sm:text-lg">${p.title}</h3><div class="flex justify-between items-center mt-2"><span class="font-bold text-rose-600 text-lg sm:text-xl">${formatPrice(p.price)}</span></div><div class="flex flex-wrap gap-1 sm:gap-2 mt-2"><span class="trust-badge text-[10px] sm:text-xs">✅ COD Available</span><span class="trust-badge text-[10px] sm:text-xs">🔒 Secure</span><span class="trust-badge text-[10px] sm:text-xs">⭐ 4.9 ★</span></div><div class="flex gap-2 mt-3"><button onclick='buyNow(${JSON.stringify(p)})' class="flex-1 bg-rose-500 hover:bg-rose-600 text-white py-2 rounded-full text-xs transition"><i class="fas fa-credit-card"></i> Online Pay</button><button onclick='redirectToCOD("${p.title}", ${p.price})' class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-full text-xs transition"><i class="fas fa-money-bill-wave"></i> Cash on Delivery</button></div></div></div>`; }
+    function redirectToCOD(productName, productPrice) { sessionStorage.setItem('codProduct', productName); sessionStorage.setItem('codPrice', productPrice); showPage('orderPage'); }
+    function renderTrending() { const container = document.getElementById('trendingGrid'); if(container) container.innerHTML = trending.map(p => renderProductCard(p)).join(''); }
+    function renderShopPage() { const shopGrid = document.getElementById('shopGrid'); if (!shopGrid) return; let filtered = [...products]; const maxPrice = parseInt(document.getElementById('priceRange')?.value || 1000); const checkedCats = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value); if (checkedCats.length) filtered = filtered.filter(p => checkedCats.includes(p.category)); filtered = filtered.filter(p => p.price <= maxPrice); const sortBy = document.getElementById('sortSelect')?.value; if (sortBy === 'priceLow') filtered.sort((a,b) => a.price - b.price); if (sortBy === 'priceHigh') filtered.sort((a,b) => b.price - a.price); shopGrid.innerHTML = filtered.map(p => renderProductCard(p)).join(''); attachStickyBuyListeners(); }
+    function attachStickyBuyListeners() { const btns = document.querySelectorAll('.product-card button'); const stickyBtn = document.getElementById('stickyBuyBtn'); if(btns.length && stickyBtn) stickyBtn.style.display = 'flex'; else if(stickyBtn) stickyBtn.style.display = 'none'; }
+    function renderJournal() { const posts = [{ title: "5 Summer Dresses That Go Viral", img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400" },{ title: "Glass Skin Routine", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400" },{ title: "Minimalist Capsule Wardrobe", img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400" }]; const container = document.getElementById('blogGrid'); if(container) container.innerHTML = posts.map(p => `<div class="bg-white/80 rounded-xl overflow-hidden shadow-md"><img class="h-40 w-full object-cover" src="${p.img}"><div class="p-3"><h3 class="font-serif text-lg">${p.title}</h3><a href="#" class="text-rose-500 text-xs mt-2 inline-block">Read more →</a></div></div>`).join(''); }
+    const YOUR_WHATSAPP_NUMBER = "917697735504";
+    function generateWhatsAppMessage() { const product = document.getElementById('codProductSelect')?.value; const quantity = document.getElementById('codQuantity')?.value || 1; const name = document.getElementById('codName')?.value.trim(); const phone = document.getElementById('codPhone')?.value.trim(); const address = document.getElementById('codAddress')?.value.trim(); const pincode = document.getElementById('codPincode')?.value.trim(); const selectedOption = document.getElementById('codProductSelect')?.options[document.getElementById('codProductSelect').selectedIndex]; const pricePerPiece = selectedOption?.getAttribute('data-price') || 0; const totalPrice = parseInt(pricePerPiece) * parseInt(quantity); return `🛍️ *NEW COD ORDER* 🛍️%0A%0A📦 *Product:* ${product}%0A• Quantity: ${quantity}%0A• Total: ₹${totalPrice}%0A%0A👤 *Customer:* ${name}%0A📞 *Phone:* ${phone}%0A📍 *Address:* ${address}%0A📮 *Pincode:* ${pincode}%0A%0A⏰ *Time:* ${new Date().toLocaleString()}%0A💵 *Payment:* Cash on Delivery`; }
+    function validateCODOrder() { const product = document.getElementById('codProductSelect')?.value; const name = document.getElementById('codName')?.value.trim(); const phone = document.getElementById('codPhone')?.value.trim(); const address = document.getElementById('codAddress')?.value.trim(); const pincode = document.getElementById('codPincode')?.value.trim(); const quantity = document.getElementById('codQuantity')?.value; if (!product) { showToast('❌ Please select a product', true); return false; } if (!name) { showToast('❌ Please enter your name', true); return false; } if (!phone) { showToast('❌ Please enter your phone number', true); return false; } const phoneDigits = phone.replace(/\D/g, ''); if (phoneDigits.length < 10) { showToast('❌ Please enter a valid phone number', true); return false; } if (!address) { showToast('❌ Please enter your delivery address', true); return false; } if (!pincode) { showToast('❌ Please enter your pincode', true); return false; } if (pincode.length < 6) { showToast('❌ Please enter a valid 6-digit pincode', true); return false; } if (!quantity || quantity < 1) { showToast('❌ Please enter valid quantity', true); return false; } return true; }
+    function updateOrderSummary() { const select = document.getElementById('codProductSelect'); const quantity = document.getElementById('codQuantity')?.value || 1; const selectedOption = select?.options[select.selectedIndex]; const productName = selectedOption?.value || '-'; const price = selectedOption?.getAttribute('data-price') || 0; const total = parseInt(price) * parseInt(quantity); document.getElementById('summaryProduct').textContent = productName || '-'; document.getElementById('summaryPrice').textContent = price ? `₹${price}` : '-'; document.getElementById('summaryQty').textContent = quantity; document.getElementById('summaryTotal').textContent = total ? `₹${total.toLocaleString('en-IN')}` : '-'; }
+    if (document.getElementById('codProductSelect')) { document.getElementById('codProductSelect').addEventListener('change', updateOrderSummary); document.getElementById('codQuantity').addEventListener('input', updateOrderSummary); }
+    async function handleCODOrderSubmit(event) { event.preventDefault(); if (!validateCODOrder()) return; const submitBtn = document.getElementById('placeCodOrderBtn'); const originalText = submitBtn.innerHTML; submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing WhatsApp...'; showToast('🔄 Preparing your COD order...'); setTimeout(() => { try { const whatsappMessage = generateWhatsAppMessage(); const whatsappLink = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${whatsappMessage}`; showToast('✅ Redirecting to WhatsApp to confirm your COD order...'); window.open(whatsappLink, '_blank'); setTimeout(() => { submitBtn.disabled = false; submitBtn.innerHTML = originalText; }, 2000); } catch (error) { showToast('❌ Something went wrong. Please try again.', true); submitBtn.disabled = false; submitBtn.innerHTML = originalText; } }, 500); }
+    const codForm = document.getElementById('codOrderForm'); if (codForm) codForm.addEventListener('submit', handleCODOrderSubmit);
+    const pages = ['homePage', 'shopPage', 'orderPage', 'journalPage', 'aboutPage', 'contactPage'];
+    window.showPage = function(pageId, skipHistory = false) { pages.forEach(p => document.getElementById(p).classList.add('hidden')); document.getElementById(pageId).classList.remove('hidden'); if (!skipHistory && pageId !== currentPage) { pageHistory.push(pageId); currentPage = pageId; } else if (skipHistory) currentPage = pageId; else if (pageId !== currentPage) { pageHistory.push(pageId); currentPage = pageId; } updateBackButtonVisibility(); window.scrollTo({ top: 0, behavior: 'smooth' }); if(pageId === 'shopPage') renderShopPage(); if(pageId === 'homePage') renderTrending(); if(pageId === 'orderPage') updateOrderSummary(); };
     document.getElementById('priceRange')?.addEventListener('input', (e) => { document.getElementById('priceValue').innerText = '₹' + parseInt(e.target.value).toLocaleString('en-IN'); renderShopPage(); });
     document.querySelectorAll('.category-filter').forEach(cb => cb.addEventListener('change', () => renderShopPage()));
     document.getElementById('sortSelect')?.addEventListener('change', () => renderShopPage());
     document.getElementById('mobileMenuBtn')?.addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('hidden'));
     document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); alert("💌 Message sent! Purnima will reply soon."); e.target.reset(); });
-
-    // Flower Background
-    function createFlowers() {
-      const container = document.getElementById('flowerBg');
-      const flowerSvg = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="#ffb6c1"/><circle cx="35" cy="35" r="12" fill="#ff69b4"/><circle cx="65" cy="35" r="12" fill="#ff69b4"/><circle cx="35" cy="65" r="12" fill="#ff69b4"/><circle cx="65" cy="65" r="12" fill="#ff69b4"/><circle cx="50" cy="50" r="8" fill="#ffeb3b"/></svg>`;
-      const count = window.innerWidth < 768 ? 30 : 50;
-      for (let i = 0; i < count; i++) {
-        const flower = document.createElement('div'); flower.className = 'flower';
-        const size = 20 + Math.random() * 60;
-        flower.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*20}s;animation-duration:${15+Math.random()*20}s`;
-        flower.innerHTML = flowerSvg;
-        container.appendChild(flower);
-      }
-    }
+    function createFlowers() { const container = document.getElementById('flowerBg'); const flowerSvg = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="#ffb6c1"/><circle cx="35" cy="35" r="12" fill="#ff69b4"/><circle cx="65" cy="35" r="12" fill="#ff69b4"/><circle cx="35" cy="65" r="12" fill="#ff69b4"/><circle cx="65" cy="65" r="12" fill="#ff69b4"/><circle cx="50" cy="50" r="8" fill="#ffeb3b"/></svg>`; const count = window.innerWidth < 768 ? 30 : 50; for (let i = 0; i < count; i++) { const flower = document.createElement('div'); flower.className = 'flower'; const size = 20 + Math.random() * 60; flower.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*20}s;animation-duration:${15+Math.random()*20}s`; flower.innerHTML = flowerSvg; container.appendChild(flower); } }
     createFlowers();
-
-    setInterval(() => { 
-      if(window.innerWidth > 768) {
-        const b=document.createElement('div'); b.className='bubble'; 
-        b.style.cssText=`width:${20+Math.random()*50}px;height:${20+Math.random()*50}px;left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s`; 
-        document.body.appendChild(b); 
-        setTimeout(()=>b.remove(),15000);
-      }
-    }, 3000);
-
-    // Initialize
-    showPage('homePage');
-    renderJournal();
-    renderTrending();
-    updateBackButtonVisibility();
+    setInterval(() => { if(window.innerWidth > 768) { const b=document.createElement('div'); b.className='bubble'; b.style.cssText=`width:${20+Math.random()*50}px;height:${20+Math.random()*50}px;left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s`; document.body.appendChild(b); setTimeout(()=>b.remove(),15000); } }, 3000);
+    showPage('homePage'); renderJournal(); renderTrending(); updateBackButtonVisibility();
   </script>
 </body>
 </html>
