@@ -46,62 +46,57 @@
     .back-button.visible { opacity: 1; visibility: visible; transform: translateX(0); }
     .back-button:hover { background: #ff3388; transform: scale(1.1); }
     .back-button:active { transform: scale(0.95); }
-    @media (max-width: 768px) { .sticky-buy { display: flex; padding: 10px 20px; font-size: 0.85rem; } .whatsapp-float { width: 48px; height: 48px; font-size: 24px; bottom: 16px; right: 16px; } .back-button { bottom: 80px; left: 12px; width: 40px; height: 40px; font-size: 18px; } .trust-badge { font-size: 10px; padding: 4px 10px; } }
-    @media (max-width: 640px) { h1 { font-size: 1.8rem !important; } .hero-text h1 { font-size: 2rem !important; } .grid { gap: 1rem; } }
+    @media (max-width: 768px) { 
+      .sticky-buy { display: flex; padding: 10px 20px; font-size: 0.85rem; bottom: 70px; }
+      .whatsapp-float { width: 45px; height: 45px; font-size: 22px; bottom: 16px; right: 16px; }
+      .back-button { bottom: 80px; left: 12px; width: 38px; height: 38px; font-size: 16px; }
+      .trust-badge { font-size: 9px; padding: 4px 8px; }
+      .container-padding { padding-left: 1rem; padding-right: 1rem; }
+      .product-card .img-zoom { height: 200px; }
+    }
+    @media (max-width: 640px) { 
+      h1 { font-size: 1.8rem !important; } 
+      .hero-text h1 { font-size: 1.8rem !important; } 
+      .grid { gap: 0.75rem; }
+      .section-title { font-size: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .product-card .img-zoom { height: 180px; }
+      .trust-badge-large { padding: 0.75rem; }
+      .trust-badge-large i { font-size: 1.5rem; }
+      .trust-badge-large p { font-size: 0.7rem; }
+    }
     button, .filter-chip, .category-card, .product-card button { cursor: pointer; min-height: 44px; }
     html { scroll-padding-top: 80px; }
     .trust-badge-large { background: linear-gradient(135deg, #f8f0f2, #fff5f7); border: 1px solid #ffd6e0; }
     @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(255, 105, 180, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); } }
     .trust-pulse { animation: pulse-glow 2s infinite; }
-    
-    /* Products container animation */
-    .products-container {
-      transition: all 0.5s ease-in-out;
-      overflow: hidden;
-    }
-    .products-wrapper {
-      transition: transform 0.5s ease-in-out, opacity 0.4s ease-in-out;
-    }
-    .products-wrapper.collapsed {
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(-20px);
-      visibility: hidden;
-      margin: 0;
-      padding: 0;
-    }
-    .products-wrapper.expanded {
-      max-height: 3000px;
-      opacity: 1;
-      transform: translateY(0);
-      visibility: visible;
-    }
-    .view-all-btn {
-      transition: all 0.3s ease;
-    }
-    .view-all-btn:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 25px -5px rgba(255, 105, 180, 0.4);
-    }
-    .scroll-top-btn {
-      position: fixed;
-      bottom: 100px;
-      right: 20px;
-      background: #ff69b4;
-      color: white;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 99;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
-    }
+    .products-wrapper.collapsed { max-height: 0; opacity: 0; transform: translateY(-20px); visibility: hidden; margin: 0; padding: 0; }
+    .products-wrapper.expanded { max-height: 3000px; opacity: 1; transform: translateY(0); visibility: visible; }
+    .view-all-btn { transition: all 0.3s ease; }
+    .view-all-btn:hover { transform: scale(1.02); box-shadow: 0 10px 25px -5px rgba(255, 105, 180, 0.4); }
+    .scroll-top-btn { position: fixed; bottom: 100px; right: 20px; background: #ff69b4; color: white; width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 99; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3); }
     .scroll-top-btn:hover { background: #ff3388; transform: scale(1.1); }
     .scroll-top-btn.show { display: flex; }
+    @media (max-width: 768px) { .scroll-top-btn { bottom: 80px; right: 16px; width: 40px; height: 40px; } }
+    
+    /* Mobile Navigation Styles */
+    .mobile-nav-open { overflow: hidden; }
+    #mobileMenu { transition: all 0.3s ease-in-out; }
+    .nav-link-mobile { display: block; padding: 12px 16px; border-radius: 12px; transition: all 0.2s; }
+    .nav-link-mobile:active { background-color: #ffe4ec; transform: scale(0.98); }
+    
+    /* Responsive Grid */
+    @media (max-width: 768px) {
+      .products-grid, .trending-grid, .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    }
+    @media (max-width: 480px) {
+      .products-grid, .trending-grid, .shop-grid { grid-template-columns: 1fr; }
+    }
+    
+    /* Touch-friendly tap highlights */
+    .tap-highlight-none { -webkit-tap-highlight-color: transparent; }
+    button, a, .cursor-pointer { cursor: pointer; }
   </style>
 </head>
 <body>
@@ -110,14 +105,14 @@
 
   <!-- Trust Bar -->
   <div class="fixed top-16 md:top-20 left-0 right-0 z-40 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-center py-2 text-xs sm:text-sm font-medium">
-    <i class="fas fa-shield-alt mr-1"></i> 100% SECURE & TRUSTED | FREE SHIPPING ON ALL ORDERS | COD AVAILABLE
+    <i class="fas fa-shield-alt mr-1"></i> 100% SECURE & TRUSTED | FREE SHIPPING | COD AVAILABLE
   </div>
 
   <header class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-wrap items-center justify-between">
       <div class="flex items-center gap-2">
         <i class="fas fa-heart text-rose-400 text-xl sm:text-2xl"></i>
-        <span class="text-xl sm:text-2xl logo-font font-semibold tracking-tight text-rose-600">Bubble<span class="text-pink-400">Beauty</span></span>
+        <span class="text-lg sm:text-2xl logo-font font-semibold tracking-tight text-rose-600">Bubble<span class="text-pink-400">Beauty</span></span>
         <span class="hidden sm:inline-block ml-2 text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full"><i class="fas fa-check-circle"></i> Trusted Store</span>
       </div>
       <div class="hidden md:flex gap-5 lg:gap-7 text-stone-600 font-medium">
@@ -129,16 +124,20 @@
         <a href="#" onclick="showPage('contactPage'); return false;" class="hover:text-rose-500 transition">Contact</a>
       </div>
       <div class="flex items-center gap-2 sm:gap-3">
-        <button class="md:hidden text-xl sm:text-2xl text-stone-600" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <button class="md:hidden text-xl sm:text-2xl text-stone-600 p-2 rounded-full hover:bg-rose-50 transition" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </div>
-    <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md pb-4 px-4 flex flex-col gap-3 text-stone-700 border-t border-rose-100">
-      <a href="#" onclick="showPage('homePage'); return false;" class="py-2">Home</a>
-      <a href="#" onclick="showPage('shopPage'); return false;" class="py-2">Shop</a>
-      <a href="#" onclick="showPage('orderPage'); return false;" class="py-2">Place Order</a>
-      <a href="#" onclick="showPage('journalPage'); return false;" class="py-2">Journal</a>
-      <a href="#" onclick="showPage('aboutPage'); return false;" class="py-2">About</a>
-      <a href="#" onclick="showPage('contactPage'); return false;" class="py-2">Contact</a>
+    
+    <!-- Mobile Menu - Improved Responsive Design -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/98 backdrop-blur-md pb-5 px-4 flex flex-col gap-2 text-stone-700 border-t border-rose-100 shadow-lg max-h-[80vh] overflow-y-auto">
+      <a href="#" onclick="showPage('homePage'); closeMobileMenu(); return false;" class="nav-link-mobile hover:bg-rose-50"><i class="fas fa-home mr-3 w-5 text-rose-400"></i> Home</a>
+      <a href="#" onclick="showPage('shopPage'); closeMobileMenu(); return false;" class="nav-link-mobile hover:bg-rose-50"><i class="fas fa-shopping-bag mr-3 w-5 text-rose-400"></i> Shop</a>
+      <a href="#" onclick="showPage('orderPage'); closeMobileMenu(); return false;" class="nav-link-mobile hover:bg-rose-50"><i class="fas fa-rupee-sign mr-3 w-5 text-rose-400"></i> Place Order</a>
+      <a href="#" onclick="showPage('journalPage'); closeMobileMenu(); return false;" class="nav-link-mobile hover:bg-rose-50"><i class="fas fa-book mr-3 w-5 text-rose-400"></i> Journal</a>
+      <a href="#" onclick="showPage('aboutPage'); closeMobileMenu(); return false;" class="nav-link-mobile hover:bg-rose-50"><i class="fas fa-info-circle mr-3 w-5 text-rose-400"></i> About</a>
+      <a href="#" onclick="showPage('contactPage'); closeMobileMenu(); return false;" class="nav-link-mobile hover:bg-rose-50"><i class="fas fa-envelope mr-3 w-5 text-rose-400"></i> Contact</a>
     </div>
   </header>
 
@@ -150,174 +149,173 @@
     <!-- HOME PAGE -->
     <div id="homePage" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
       
-      <!-- Trust Indicators -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8" data-aos="fade-up">
-        <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-truck text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">Free Shipping</p><p class="text-[10px] text-stone-500">All India</p></div>
-        <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-rupee-sign text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">COD Available</p><p class="text-[10px] text-stone-500">Pay on Delivery</p></div>
-        <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-undo-alt text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">Easy Returns</p><p class="text-[10px] text-stone-500">7 Days Return</p></div>
-        <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-shield-alt text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">100% Secure</p><p class="text-[10px] text-stone-500">Safe Checkout</p></div>
+      <!-- Trust Indicators - Responsive Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8" data-aos="fade-up">
+        <div class="bg-white/60 rounded-xl p-2 sm:p-3 text-center"><i class="fas fa-truck text-rose-500 text-lg sm:text-xl mb-1"></i><p class="text-xs font-semibold">Free Shipping</p><p class="text-[10px] text-stone-500 hidden sm:block">All India</p></div>
+        <div class="bg-white/60 rounded-xl p-2 sm:p-3 text-center"><i class="fas fa-rupee-sign text-rose-500 text-lg sm:text-xl mb-1"></i><p class="text-xs font-semibold">COD Available</p><p class="text-[10px] text-stone-500 hidden sm:block">Pay on Delivery</p></div>
+        <div class="bg-white/60 rounded-xl p-2 sm:p-3 text-center"><i class="fas fa-undo-alt text-rose-500 text-lg sm:text-xl mb-1"></i><p class="text-xs font-semibold">Easy Returns</p><p class="text-[10px] text-stone-500 hidden sm:block">7 Days Return</p></div>
+        <div class="bg-white/60 rounded-xl p-2 sm:p-3 text-center"><i class="fas fa-shield-alt text-rose-500 text-lg sm:text-xl mb-1"></i><p class="text-xs font-semibold">100% Secure</p><p class="text-[10px] text-stone-500 hidden sm:block">Safe Checkout</p></div>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8 md:gap-10 items-center mb-16 md:mb-20" data-aos="fade-up">
+      <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center mb-12 md:mb-20" data-aos="fade-up">
         <div class="text-center md:text-left">
           <div class="inline-block bg-rose-100 text-rose-600 px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm mb-4">✨ India's Most Trusted Beauty Store ✨</div>
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-rose-700 leading-tight">Handpicked Fashion & Beauty Finds Just For You 💖</h1>
-          <p class="text-stone-500 text-base sm:text-lg mt-3 sm:mt-4">Curated by Purnima – Trusted by 50,000+ girls across India</p>
-          <div class="flex flex-wrap gap-3 sm:gap-4 mt-5 sm:mt-6 justify-center md:justify-start">
-            <button onclick="showPage('shopPage')" class="bg-rose-500 hover:bg-rose-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold transition shadow-lg flex items-center gap-2 trust-pulse">Shop Now 🔥 <i class="fas fa-arrow-right"></i></button>
-            <button onclick="showPage('orderPage')" class="border border-rose-300 text-rose-600 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-rose-50 transition">COD Order 💵</button>
+          <h1 class="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-rose-700 leading-tight">Handpicked Fashion & Beauty Finds Just For You 💖</h1>
+          <p class="text-stone-500 text-sm sm:text-base md:text-lg mt-3">Curated by Purnima – Trusted by 50,000+ girls across India</p>
+          <div class="flex flex-wrap gap-3 mt-5 sm:mt-6 justify-center md:justify-start">
+            <button onclick="showPage('shopPage')" class="bg-rose-500 hover:bg-rose-600 text-white px-5 sm:px-8 py-2.5 rounded-full font-semibold transition shadow-lg flex items-center gap-2 text-sm sm:text-base trust-pulse">Shop Now 🔥 <i class="fas fa-arrow-right"></i></button>
+            <button onclick="showPage('orderPage')" class="border border-rose-300 text-rose-600 px-4 sm:px-6 py-2.5 rounded-full hover:bg-rose-50 transition text-sm sm:text-base">COD Order 💵</button>
           </div>
-          <div class="flex gap-5 sm:gap-6 justify-center md:justify-start mt-6 sm:mt-8">
-            <div><span class="font-bold text-rose-600 text-lg sm:text-xl">50K+</span><p class="text-xs sm:text-sm text-stone-500">Happy Customers</p></div>
-            <div><span class="font-bold text-rose-600 text-lg sm:text-xl">4.9</span><p class="text-xs sm:text-sm text-stone-500">⭐ Rating</p></div>
-            <div><span class="font-bold text-rose-600 text-lg sm:text-xl">10K+</span><p class="text-xs sm:text-sm text-stone-500">Orders Delivered</p></div>
+          <div class="flex gap-4 sm:gap-6 justify-center md:justify-start mt-6">
+            <div><span class="font-bold text-rose-600 text-base sm:text-xl">50K+</span><p class="text-xs text-stone-500">Happy Customers</p></div>
+            <div><span class="font-bold text-rose-600 text-base sm:text-xl">4.9</span><p class="text-xs text-stone-500">⭐ Rating</p></div>
+            <div><span class="font-bold text-rose-600 text-base sm:text-xl">10K+</span><p class="text-xs text-stone-500">Orders Delivered</p></div>
           </div>
         </div>
         <div class="flex justify-center mt-6 md:mt-0">
-          <div class="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+          <div class="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
             <img src="moon.jpeg" alt="Creator Purnima" class="w-full h-full object-cover">
           </div>
         </div>
       </div>
 
-      <!-- Customer Reviews Strip -->
-      <div class="bg-white/50 rounded-2xl p-4 mb-8 overflow-hidden" data-aos="fade-up">
-        <div class="flex items-center justify-center gap-6 flex-wrap">
-          <div class="flex items-center gap-2"><i class="fab fa-google text-2xl text-blue-500"></i><span class="text-sm">4.9 ★ (2,345 reviews)</span></div>
-          <div class="flex items-center gap-2"><i class="fab fa-amazon text-2xl text-orange-400"></i><span class="text-sm">4.8 ★ (1,892 reviews)</span></div>
-          <div class="flex items-center gap-2"><i class="fab fa-instagram text-2xl text-pink-500"></i><span class="text-sm">50K+ followers</span></div>
+      <!-- Customer Reviews Strip - Responsive -->
+      <div class="bg-white/50 rounded-2xl p-3 sm:p-4 mb-6 sm:mb-8 overflow-x-auto" data-aos="fade-up">
+        <div class="flex items-center justify-center gap-4 sm:gap-6 flex-nowrap sm:flex-wrap">
+          <div class="flex items-center gap-2 flex-shrink-0"><i class="fab fa-google text-xl sm:text-2xl text-blue-500"></i><span class="text-xs sm:text-sm">4.9 ★ (2,345)</span></div>
+          <div class="flex items-center gap-2 flex-shrink-0"><i class="fab fa-amazon text-xl sm:text-2xl text-orange-400"></i><span class="text-xs sm:text-sm">4.8 ★ (1,892)</span></div>
+          <div class="flex items-center gap-2 flex-shrink-0"><i class="fab fa-instagram text-xl sm:text-2xl text-pink-500"></i><span class="text-xs sm:text-sm">50K+ followers</span></div>
         </div>
       </div>
 
-      <div id="creator-story" class="bg-white/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 mb-16 md:mb-20 text-center" data-aos="fade-up">
+      <div id="creator-story" class="bg-white/50 backdrop-blur-sm rounded-2xl p-5 sm:p-8 mb-12 md:mb-20 text-center" data-aos="fade-up">
         <i class="fas fa-heart text-rose-400 text-2xl sm:text-3xl mb-3"></i>
-        <h2 class="text-2xl sm:text-3xl font-serif">Hi, I'm Purnima! 💕</h2>
+        <h2 class="text-xl sm:text-3xl font-serif">Hi, I'm Purnima! 💕</h2>
         <p class="text-stone-600 max-w-2xl mx-auto mt-3 text-sm sm:text-base md:text-lg px-2">I personally test every product before it reaches you. My mission is to bring you affordable, high-quality fashion & beauty that you can trust. No fake products, no hidden charges — just pure love for style! 🌸</p>
-        <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mt-4 sm:mt-5 text-xs sm:text-sm text-rose-500">
-          <span>✨ 500+ products personally tested</span>
-          <span>💖 100% authentic quality</span>
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mt-4 text-xs sm:text-sm text-rose-500">
+          <span>✨ 500+ products tested</span>
+          <span>💖 100% authentic</span>
           <span>📸 Real customer photos</span>
         </div>
       </div>
 
-      <!-- Trust Badges -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12" data-aos="fade-up">
-        <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-check-circle text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">100% Authentic</p><p class="text-xs text-stone-500">No counterfeit products</p></div>
-        <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-lock text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">Secure Payments</p><p class="text-xs text-stone-500">SSL encrypted checkout</p></div>
-        <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-truck text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">Free Shipping</p><p class="text-xs text-stone-500">On all orders</p></div>
-        <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-headset text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">24/7 Support</p><p class="text-xs text-stone-500">WhatsApp assistance</p></div>
+      <!-- Trust Badges - Responsive -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-12" data-aos="fade-up">
+        <div class="trust-badge-large rounded-xl p-3 sm:p-4 text-center"><i class="fas fa-check-circle text-green-500 text-xl sm:text-2xl mb-1 sm:mb-2"></i><p class="font-semibold text-xs sm:text-sm">100% Authentic</p><p class="text-[10px] text-stone-500 hidden sm:block">No counterfeit</p></div>
+        <div class="trust-badge-large rounded-xl p-3 sm:p-4 text-center"><i class="fas fa-lock text-green-500 text-xl sm:text-2xl mb-1 sm:mb-2"></i><p class="font-semibold text-xs sm:text-sm">Secure Payments</p><p class="text-[10px] text-stone-500 hidden sm:block">SSL encrypted</p></div>
+        <div class="trust-badge-large rounded-xl p-3 sm:p-4 text-center"><i class="fas fa-truck text-green-500 text-xl sm:text-2xl mb-1 sm:mb-2"></i><p class="font-semibold text-xs sm:text-sm">Free Shipping</p><p class="text-[10px] text-stone-500 hidden sm:block">All orders</p></div>
+        <div class="trust-badge-large rounded-xl p-3 sm:p-4 text-center"><i class="fas fa-headset text-green-500 text-xl sm:text-2xl mb-1 sm:mb-2"></i><p class="font-semibold text-xs sm:text-sm">24/7 Support</p><p class="text-[10px] text-stone-500 hidden sm:block">WhatsApp</p></div>
       </div>
 
       <!-- TRENDING NOW with View All Button -->
-      <div class="mb-12 md:mb-16" data-aos="fade-up">
-        <div class="flex flex-wrap justify-between items-center mb-6">
+      <div class="mb-10 md:mb-16" data-aos="fade-up">
+        <div class="flex flex-wrap justify-between items-center mb-5 gap-3">
           <div>
-            <h2 class="text-2xl sm:text-3xl font-serif">🔥 Trending Now</h2>
-            <p class="text-stone-500 text-sm">Viral picks loved by our community</p>
+            <h2 class="text-xl sm:text-3xl font-serif">🔥 Trending Now</h2>
+            <p class="text-stone-500 text-xs sm:text-sm">Viral picks loved by our community</p>
           </div>
-          <button id="viewAllProductsBtn" class="view-all-btn bg-gradient-to-r from-rose-400 to-pink-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md flex items-center gap-2">
-            <i class="fas fa-eye"></i> View All Products
-            <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+          <button id="viewAllProductsBtn" class="view-all-btn bg-gradient-to-r from-rose-400 to-pink-500 text-white px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-md flex items-center gap-1 sm:gap-2">
+            <i class="fas fa-eye text-xs sm:text-sm"></i> <span class="hidden sm:inline">View All Products</span><span class="sm:hidden">View All</span>
+            <i class="fas fa-arrow-right text-xs sm:text-sm"></i>
           </button>
         </div>
         
-        <!-- Initial 2 Products (Always Visible) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto" id="initialProductsGrid"></div>
         
-        <!-- Hidden Products Container (Animated) -->
         <div class="products-wrapper collapsed" id="allProductsWrapper">
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6" id="allProductsGrid"></div>
         </div>
       </div>
 
-      <!-- Real Customer Testimonials -->
-      <div class="bg-rose-50/70 rounded-2xl p-6 mb-12" data-aos="fade-up">
-        <h3 class="text-xl font-serif text-center mb-6">💬 What Our Customers Say</h3>
-        <div class="grid md:grid-cols-3 gap-4">
-          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Priya S.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Amazing quality! The dress fits perfectly and delivery was super fast!"</p></div>
-          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Neha K.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Trustworthy store! Got exactly what I ordered. Packaging was so pretty!"</p></div>
-          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Ritu M.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Quick response on WhatsApp and easy COD option. Highly recommended!"</p></div>
+      <!-- Real Customer Testimonials - Responsive -->
+      <div class="bg-rose-50/70 rounded-2xl p-4 sm:p-6 mb-10 sm:mb-12" data-aos="fade-up">
+        <h3 class="text-lg sm:text-xl font-serif text-center mb-4 sm:mb-6">💬 What Our Customers Say</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <div class="bg-white rounded-xl p-3 sm:p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-xs sm:text-sm"></i></div><div><p class="font-semibold text-xs sm:text-sm">Priya S.</p><div class="text-yellow-400 text-[10px] sm:text-xs">★★★★★</div></div></div><p class="text-xs sm:text-sm text-stone-600">"Amazing quality! Delivery was super fast!"</p></div>
+          <div class="bg-white rounded-xl p-3 sm:p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-xs sm:text-sm"></i></div><div><p class="font-semibold text-xs sm:text-sm">Neha K.</p><div class="text-yellow-400 text-[10px] sm:text-xs">★★★★★</div></div></div><p class="text-xs sm:text-sm text-stone-600">"Trustworthy store! Packaging was so pretty!"</p></div>
+          <div class="bg-white rounded-xl p-3 sm:p-4 shadow-sm sm:col-span-2 lg:col-span-1"><div class="flex items-center gap-2 mb-2"><div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-xs sm:text-sm"></i></div><div><p class="font-semibold text-xs sm:text-sm">Ritu M.</p><div class="text-yellow-400 text-[10px] sm:text-xs">★★★★★</div></div></div><p class="text-xs sm:text-sm text-stone-600">"Quick response on WhatsApp and easy COD option!"</p></div>
         </div>
       </div>
 
       <!-- Money Back Guarantee -->
-      <div class="bg-gradient-to-r from-rose-100 to-pink-100 rounded-2xl p-6 text-center" data-aos="fade-up">
-        <i class="fas fa-medal text-rose-500 text-3xl mb-2"></i>
-        <h3 class="font-bold text-lg">100% Satisfaction Guarantee</h3>
-        <p class="text-sm text-stone-600 mt-1">Not happy with your purchase? Easy returns & refunds within 7 days. No questions asked!</p>
+      <div class="bg-gradient-to-r from-rose-100 to-pink-100 rounded-2xl p-4 sm:p-6 text-center" data-aos="fade-up">
+        <i class="fas fa-medal text-rose-500 text-2xl sm:text-3xl mb-2"></i>
+        <h3 class="font-bold text-base sm:text-lg">100% Satisfaction Guarantee</h3>
+        <p class="text-xs sm:text-sm text-stone-600 mt-1">Not happy? Easy returns & refunds within 7 days. No questions asked!</p>
       </div>
     </div>
 
     <!-- SHOP PAGE -->
     <div id="shopPage" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden">
       <div class="flex flex-col lg:flex-row gap-6 lg:gap-10">
-        <aside class="lg:w-1/4 space-y-5 sm:space-y-6">
-          <div class="sidebar-glass p-4 sm:p-5 rounded-xl sm:rounded-2xl"><h3 class="font-semibold text-sm sm:text-base">Price (₹)</h3><input type="range" min="0" max="1000" step="10" id="priceRange" class="w-full mt-2 accent-rose-400"><div class="flex justify-between text-xs sm:text-sm mt-2"><span>₹0</span><span id="priceValue">₹1000</span></div></div>
-          <div class="sidebar-glass p-4 sm:p-5 rounded-xl sm:rounded-2xl"><h3 class="font-semibold text-sm sm:text-base">Categories</h3><div class="space-y-2 mt-3 text-sm"><label><input type="checkbox" class="category-filter" value="dresses"> Dresses</label></div></div>
-          <div class="sidebar-glass p-4 sm:p-5 rounded-xl sm:rounded-2xl"><h3 class="font-semibold text-sm sm:text-base">Sort by</h3><select id="sortSelect" class="w-full mt-2 p-2 rounded-lg border border-rose-100 text-sm"><option value="default">Featured</option><option value="priceLow">Price: Low to High</option><option value="priceHigh">Price: High to Low</option></select></div>
+        <aside class="lg:w-1/4 space-y-5">
+          <div class="sidebar-glass p-4 rounded-xl"><h3 class="font-semibold text-sm">Price (₹)</h3><input type="range" min="0" max="1000" step="10" id="priceRange" class="w-full mt-2 accent-rose-400"><div class="flex justify-between text-xs mt-2"><span>₹0</span><span id="priceValue">₹1000</span></div></div>
+          <div class="sidebar-glass p-4 rounded-xl"><h3 class="font-semibold text-sm">Categories</h3><div class="space-y-2 mt-3 text-sm"><label class="flex items-center gap-2"><input type="checkbox" class="category-filter" value="dresses"> Dresses</label></div></div>
+          <div class="sidebar-glass p-4 rounded-xl"><h3 class="font-semibold text-sm">Sort by</h3><select id="sortSelect" class="w-full mt-2 p-2 rounded-lg border border-rose-100 text-sm"><option value="default">Featured</option><option value="priceLow">Price: Low to High</option><option value="priceHigh">Price: High to Low</option></select></div>
         </aside>
-        <div class="lg:w-3/4"><div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-7" id="shopGrid"></div></div>
+        <div class="lg:w-3/4"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="shopGrid"></div></div>
       </div>
     </div>
 
-    <!-- ORDER PAGE - COD -->
+    <!-- ORDER PAGE, JOURNAL, ABOUT, CONTACT pages -->
     <div id="orderPage" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden">
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg border border-pink-100" data-aos="fade-up">
-        <h2 class="text-2xl sm:text-3xl font-serif text-rose-600 text-center mb-2">📦 Place Your Order (COD)</h2>
-        <p class="text-stone-500 text-center mb-6">Cash on Delivery - Pay when you receive the product</p>
-        <form id="codOrderForm" class="space-y-5">
-          <div><label class="block text-stone-700 font-semibold mb-2">Select Product *</label><select id="codProductSelect" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required><option value="">-- Choose a product --</option></select></div>
-          <div><label class="block text-stone-700 font-semibold mb-2">Quantity *</label><input type="number" id="codQuantity" min="1" value="1" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></div>
-          <div><label class="block text-stone-700 font-semibold mb-2">Full Name *</label><input type="text" id="codName" placeholder="Enter your full name" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></div>
-          <div><label class="block text-stone-700 font-semibold mb-2">Phone Number *</label><input type="tel" id="codPhone" placeholder="Enter your WhatsApp number" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required><p class="text-xs text-stone-400 mt-1">We'll use this to confirm your order</p></div>
-          <div><label class="block text-stone-700 font-semibold mb-2">Complete Address *</label><textarea id="codAddress" rows="3" placeholder="Enter your complete delivery address" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></textarea></div>
-          <div><label class="block text-stone-700 font-semibold mb-2">Pincode *</label><input type="text" id="codPincode" placeholder="Enter your area pincode" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></div>
-          <div class="bg-rose-50 rounded-xl p-4"><h3 class="font-semibold text-rose-700 mb-2">Order Summary</h3><div class="space-y-1 text-sm"><p><span class="text-stone-600">Product:</span> <span id="summaryProduct">-</span></p><p><span class="text-stone-600">Price per piece:</span> <span id="summaryPrice">-</span></p><p><span class="text-stone-600">Quantity:</span> <span id="summaryQty">-</span></p><p><span class="text-stone-600 font-semibold">Total Amount:</span> <span id="summaryTotal" class="font-bold text-rose-600">-</span></p></div></div>
-          <button type="submit" id="placeCodOrderBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-full font-semibold transition shadow-lg flex items-center justify-center gap-2 text-base"><i class="fab fa-whatsapp"></i> Place COD Order via WhatsApp</button>
-          <p class="text-xs text-stone-400 text-center mt-3">You'll be redirected to WhatsApp to confirm your order</p>
+      <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-5 sm:p-8 shadow-lg border border-pink-100" data-aos="fade-up">
+        <h2 class="text-xl sm:text-3xl font-serif text-rose-600 text-center mb-2">📦 Place Your Order (COD)</h2>
+        <p class="text-stone-500 text-center text-sm sm:text-base mb-6">Cash on Delivery - Pay when you receive</p>
+        <form id="codOrderForm" class="space-y-4 sm:space-y-5">
+          <div><label class="block text-stone-700 font-semibold mb-2 text-sm">Select Product *</label><select id="codProductSelect" class="w-full p-3 rounded-xl border border-rose-200 bg-white" required><option value="">-- Choose a product --</option></select></div>
+          <div><label class="block text-stone-700 font-semibold mb-2 text-sm">Quantity *</label><input type="number" id="codQuantity" min="1" value="1" class="w-full p-3 rounded-xl border border-rose-200" required></div>
+          <div><label class="block text-stone-700 font-semibold mb-2 text-sm">Full Name *</label><input type="text" id="codName" placeholder="Enter your full name" class="w-full p-3 rounded-xl border border-rose-200" required></div>
+          <div><label class="block text-stone-700 font-semibold mb-2 text-sm">Phone Number *</label><input type="tel" id="codPhone" placeholder="Enter your WhatsApp number" class="w-full p-3 rounded-xl border border-rose-200" required><p class="text-xs text-stone-400 mt-1">We'll use this to confirm your order</p></div>
+          <div><label class="block text-stone-700 font-semibold mb-2 text-sm">Complete Address *</label><textarea id="codAddress" rows="3" placeholder="Enter your complete delivery address" class="w-full p-3 rounded-xl border border-rose-200" required></textarea></div>
+          <div><label class="block text-stone-700 font-semibold mb-2 text-sm">Pincode *</label><input type="text" id="codPincode" placeholder="Enter your area pincode" class="w-full p-3 rounded-xl border border-rose-200" required></div>
+          <div class="bg-rose-50 rounded-xl p-4"><h3 class="font-semibold text-rose-700 mb-2 text-sm">Order Summary</h3><div class="space-y-1 text-sm"><p><span class="text-stone-600">Product:</span> <span id="summaryProduct">-</span></p><p><span class="text-stone-600">Price:</span> <span id="summaryPrice">-</span></p><p><span class="text-stone-600">Quantity:</span> <span id="summaryQty">-</span></p><p><span class="font-semibold">Total:</span> <span id="summaryTotal" class="font-bold text-rose-600">-</span></p></div></div>
+          <button type="submit" id="placeCodOrderBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-full font-semibold transition shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base"><i class="fab fa-whatsapp"></i> Place COD Order via WhatsApp</button>
+          <p class="text-xs text-stone-400 text-center">You'll be redirected to WhatsApp to confirm your order</p>
         </form>
       </div>
     </div>
 
-    <!-- JOURNAL, ABOUT, CONTACT pages -->
-    <div id="journalPage" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center mb-8 sm:mb-12"><h1 class="text-3xl sm:text-4xl font-serif text-rose-600">🌸 Beauty Journal</h1></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" id="blogGrid"></div></div>
-    <div id="aboutPage" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center"><h1 class="text-3xl sm:text-4xl font-serif text-rose-600">Our Story</h1><div class="mt-8 sm:mt-10 grid md:grid-cols-2 gap-8 sm:gap-12 items-center"><img class="rounded-2xl shadow-xl w-full" src="moon.jpeg"><div><h2 class="text-xl font-serif">Purnima — your curator</h2><p class="text-stone-600 mt-3">BubbleBeauty is built on trust. Every product is personally tested by me before it reaches you. Join 50,000+ happy customers who trust us for authentic, affordable fashion & beauty.</p><div class="flex gap-4 mt-4"><a href="https://www.instagram.com/_its_full_moon_" target="_blank" class="text-rose-500"><i class="fab fa-instagram text-xl"></i></a><a href="https://www.facebook.com/share/1aaVARdeYM/" target="_blank" class="text-rose-500"><i class="fab fa-facebook text-xl"></i></a></div></div></div></div></div>
-    <div id="contactPage" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center mb-6 sm:mb-10"><h1 class="text-3xl sm:text-4xl font-serif text-rose-600">Let's Connect</h1></div><form id="contactForm" class="bg-white/60 p-5 sm:p-8 rounded-2xl shadow-sm space-y-4"><input type="text" placeholder="Your name" class="w-full p-3 rounded-xl border"><input type="email" placeholder="Email" class="w-full p-3 rounded-xl border"><textarea rows="4" placeholder="Message" class="w-full p-3 rounded-xl border"></textarea><button type="submit" class="w-full bg-rose-500 text-white py-3 rounded-xl">Send 💌</button></form></div>
+    <div id="journalPage" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center mb-8"><h1 class="text-2xl sm:text-4xl font-serif text-rose-600">🌸 Beauty Journal</h1></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="blogGrid"></div></div>
+    <div id="aboutPage" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center"><h1 class="text-2xl sm:text-4xl font-serif text-rose-600">Our Story</h1><div class="mt-8 grid md:grid-cols-2 gap-8 items-center"><img class="rounded-2xl shadow-xl w-full" src="moon.jpeg"><div><h2 class="text-xl font-serif">Purnima — your curator</h2><p class="text-stone-600 mt-3 text-sm">BubbleBeauty is built on trust. Every product is personally tested by me before it reaches you. Join 50,000+ happy customers who trust us for authentic, affordable fashion & beauty.</p><div class="flex gap-4 mt-4"><a href="https://www.instagram.com/_its_full_moon_" target="_blank" class="text-rose-500"><i class="fab fa-instagram text-xl"></i></a><a href="https://www.facebook.com/share/1aaVARdeYM/" target="_blank" class="text-rose-500"><i class="fab fa-facebook text-xl"></i></a></div></div></div></div></div>
+    <div id="contactPage" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 hidden"><div class="text-center mb-6"><h1 class="text-2xl sm:text-4xl font-serif text-rose-600">Let's Connect</h1></div><form id="contactForm" class="bg-white/60 p-5 rounded-2xl shadow-sm space-y-4"><input type="text" placeholder="Your name" class="w-full p-3 rounded-xl border"><input type="email" placeholder="Email" class="w-full p-3 rounded-xl border"><textarea rows="4" placeholder="Message" class="w-full p-3 rounded-xl border"></textarea><button type="submit" class="w-full bg-rose-500 text-white py-3 rounded-xl">Send 💌</button></form></div>
   </main>
 
   <div class="whatsapp-float" onclick="window.open('https://wa.me/917697735504?text=Hi%20Purnima,%20I%20need%20help%20with%20shopping!','_blank')"><i class="fab fa-whatsapp"></i></div>
   <div class="sticky-buy" id="stickyBuyBtn" style="display: none;">✨ Get Yours Now 💖</div>
 
-  <footer class="bg-stone-900 text-stone-400 py-8 sm:py-12 mt-8 sm:mt-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-      <div><span class="text-white text-lg sm:text-xl font-serif">Bubble<span class="text-pink-400">Beauty</span></span><p class="text-xs sm:text-sm mt-2">India's Most Trusted Beauty Store ✨</p><div class="flex gap-3 mt-3"><a href="https://www.instagram.com/_its_full_moon_" target="_blank" class="hover:text-pink-400"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/share/1aaVARdeYM/" target="_blank" class="hover:text-pink-400"><i class="fab fa-facebook"></i></a></div></div>
-      <div><h4 class="text-white font-semibold text-sm sm:text-base">Explore</h4><ul class="text-xs sm:text-sm space-y-2 mt-3"><li><a href="#" onclick="showPage('shopPage'); return false;">Shop</a></li><li><a href="#" onclick="showPage('orderPage'); return false;">COD Order</a></li></ul></div>
-      <div><h4 class="text-white font-semibold text-sm sm:text-base">Support</h4><ul class="text-xs sm:text-sm space-y-2 mt-3"><li><a href="#" onclick="showPage('contactPage'); return false;">Contact</a></li><li><a href="#">WhatsApp: +91 7697735504</a></li></ul></div>
-      <div><div class="flex flex-wrap gap-2"><span class="trust-badge bg-stone-800 text-stone-300 text-xs"><i class="fas fa-rupee-sign"></i> COD Available</span><span class="trust-badge bg-stone-800 text-stone-300 text-xs"><i class="fas fa-lock"></i> 100% Secure</span><span class="trust-badge bg-stone-800 text-stone-300 text-xs"><i class="fas fa-undo-alt"></i> Easy Returns</span></div></div>
+  <footer class="bg-stone-900 text-stone-400 py-6 sm:py-12 mt-8 sm:mt-12">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div><span class="text-white text-lg font-serif">Bubble<span class="text-pink-400">Beauty</span></span><p class="text-xs mt-2">India's Most Trusted Beauty Store ✨</p><div class="flex gap-3 mt-3"><a href="https://www.instagram.com/_its_full_moon_" target="_blank" class="hover:text-pink-400"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/share/1aaVARdeYM/" target="_blank" class="hover:text-pink-400"><i class="fab fa-facebook"></i></a></div></div>
+      <div><h4 class="text-white font-semibold text-sm">Explore</h4><ul class="text-xs space-y-2 mt-3"><li><a href="#" onclick="showPage('shopPage'); return false;">Shop</a></li><li><a href="#" onclick="showPage('orderPage'); return false;">COD Order</a></li></ul></div>
+      <div><h4 class="text-white font-semibold text-sm">Support</h4><ul class="text-xs space-y-2 mt-3"><li><a href="#" onclick="showPage('contactPage'); return false;">Contact</a></li><li><a href="#">WhatsApp: +91 7697735504</a></li></ul></div>
+      <div><div class="flex flex-wrap gap-2"><span class="trust-badge bg-stone-800 text-stone-300 text-[10px]"><i class="fas fa-rupee-sign"></i> COD</span><span class="trust-badge bg-stone-800 text-stone-300 text-[10px]"><i class="fas fa-lock"></i> Secure</span><span class="trust-badge bg-stone-800 text-stone-300 text-[10px]"><i class="fas fa-undo-alt"></i> Returns</span></div></div>
     </div>
-    <div class="text-center text-xs pt-6 sm:pt-8 border-t border-stone-800 mt-6 sm:mt-8">© 2025 BubbleBeauty — India's Most Trusted Beauty Store | Handpicked with love by Purnima 💕</div>
+    <div class="text-center text-[10px] sm:text-xs pt-6 border-t border-stone-800 mt-6">© 2025 BubbleBeauty — India's Most Trusted Beauty Store | Handpicked with love by Purnima 💕</div>
   </footer>
 
   <script>
     AOS.init({ duration: 800, once: true, offset: 30, disable: window.innerWidth < 768 ? true : false });
     
-    // ========== PRODUCTS DATABASE ==========
     const products = [
-      { id: 1, title: "Floral Summer Maxi Dress", category: "dresses", price: 599, rating: 4.9, img: "pr2.png", desc: "Beautiful floral print maxi dress perfect for summer days.", benefits: ["Lightweight breathable fabric", "Beautiful floral pattern", "Perfect for casual outings"], perfectFor: "Daily Wear, Casual", stock: 15, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
-      { id: 2, title: "Elegant Party Wear Dress", category: "dresses", price: 659, rating: 4.8, img: "pr3.png", desc: "Stunning party dress for special occasions and celebrations.", benefits: ["Elegant design", "Comfortable fit", "Perfect for parties & events"], perfectFor: "Party, Date Night", stock: 10, paymentLink: "https://rzp.io/rzp/IFbAAG1" },
-      { id: 3, title: "Printed A - line smoking dress", category: "dresses", price: 599, rating: 4.7, img: "pr4.png", desc: "Comfortable cotton kurti for daily wear.", benefits: ["100% Cotton", "Breathable fabric", "Easy to style"], perfectFor: "Office, Daily Wear", stock: 20, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
-      { id: 4, title: "Rosetta Bow-Strap Maxi", category: "dresses", price: 599, rating: 4.9, img: "pr5.png", desc: "Rosetta Bow-Strap Maxi", benefits: ["Heavy embroidery", "Premium fabric", "Perfect for weddings"], perfectFor: "Wedding, Party", stock: 8, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
-      { id: 5, title: "The Sienna Smocked Maroon Floral Maxi", category: "dresses", price: 599, rating: 4.6, img: "pr6.png", desc: "Lightweight beach dress for vacation.", benefits: ["Breathable cotton", "Quick dry", "Perfect for beach"], perfectFor: "Beach, Vacation", stock: 25, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
-      <!-- { id: 6, title: "Office Formal Dress", category: "dresses", price: 1099, rating: 4.8, img: "pr7.png", desc: "Elegant formal dress for office wear.", benefits: ["Professional look", "Comfortable fit", "Wrinkle-free"], perfectFor: "Office, Business", stock: 12, paymentLink: "https://rzp.io/rzp/IFbAAG1" } -->
+      { id: 1, title: "Floral Summer Maxi Dress", category: "dresses", price: 599, rating: 4.9, img: "pr2.png", desc: "Beautiful floral print maxi dress.", benefits: ["Lightweight fabric", "Floral pattern", "Perfect for casual"], perfectFor: "Daily Wear", stock: 15, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
+      { id: 2, title: "Elegant Party Wear Dress", category: "dresses", price: 659, rating: 4.8, img: "pr3.png", desc: "Stunning party dress.", benefits: ["Elegant design", "Comfortable fit", "Perfect for parties"], perfectFor: "Party", stock: 10, paymentLink: "https://rzp.io/rzp/IFbAAG1" },
+      { id: 3, title: "Printed A-line Smoking Dress", category: "dresses", price: 599, rating: 4.7, img: "pr4.png", desc: "Comfortable cotton dress.", benefits: ["100% Cotton", "Breathable", "Easy to style"], perfectFor: "Office, Daily", stock: 20, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
+      { id: 4, title: "Rosetta Bow-Strap Maxi", category: "dresses", price: 599, rating: 4.9, img: "pr5.png", desc: "Rosetta Bow-Strap Maxi", benefits: ["Premium fabric", "Perfect for weddings"], perfectFor: "Wedding", stock: 8, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
+      { id: 5, title: "The Sienna Smocked Maxi", category: "dresses", price: 599, rating: 4.6, img: "pr6.png", desc: "Lightweight maxi dress.", benefits: ["Breathable", "Quick dry", "Perfect for beach"], perfectFor: "Beach", stock: 25, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" }
     ];
 
-    // Initial 2 products for homepage
     const initialProducts = products.slice(0, 2);
     const remainingProducts = products.slice(2);
 
-    // Page navigation
     let pageHistory = ['homePage']; 
     let currentPage = 'homePage';
+    
+    function closeMobileMenu() { 
+      const mobileMenu = document.getElementById('mobileMenu'); 
+      if (mobileMenu) mobileMenu.classList.add('hidden'); 
+      document.body.classList.remove('mobile-nav-open');
+    }
     
     function updateBackButtonVisibility() { 
       const backBtn = document.getElementById('backButton'); 
@@ -354,7 +352,7 @@
     
     function showToast(msg, duration) { 
       const toast = document.createElement('div'); 
-      toast.className = 'fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-rose-500 text-white shadow-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm z-50 transition-all whitespace-nowrap'; 
+      toast.className = 'fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-rose-500 text-white shadow-xl rounded-full px-4 py-2 text-xs z-50 transition-all whitespace-nowrap max-w-[90vw] text-center'; 
       toast.innerText = msg; 
       document.body.appendChild(toast); 
       setTimeout(() => toast.remove(), duration); 
@@ -363,15 +361,15 @@
     function formatPrice(price) { return '₹' + price.toLocaleString('en-IN'); }
     
     function renderProductCard(p) { 
-      return `<div class="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden shadow-md card-hover border border-pink-100 product-card h-full flex flex-col">
-        <div class="img-zoom h-64 sm:h-72"><img loading="lazy" src="${p.img}" class="w-full h-full object-cover" alt="${p.title}"></div>
-        <div class="p-3 sm:p-4 flex-1 flex flex-col">
-          <h3 class="font-semibold text-base sm:text-lg">${p.title}</h3>
-          <div class="flex justify-between items-center mt-2"><span class="font-bold text-rose-600 text-lg sm:text-xl">${formatPrice(p.price)}</span></div>
-          <div class="flex flex-wrap gap-1 sm:gap-2 mt-2"><span class="trust-badge text-[10px] sm:text-xs">✅ COD Available</span><span class="trust-badge text-[10px] sm:text-xs">🔒 Secure</span><span class="trust-badge text-[10px] sm:text-xs">⭐ ${p.rating} ★</span></div>
-          <div class="flex gap-2 mt-3">
-            <button onclick='buyNow(${JSON.stringify(p)})' class="flex-1 bg-rose-500 hover:bg-rose-600 text-white py-2 rounded-full text-xs transition"><i class="fas fa-credit-card"></i> Online Pay</button>
-            <button onclick='redirectToCOD("${p.title}", ${p.price})' class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-full text-xs transition"><i class="fas fa-money-bill-wave"></i> Cash on Delivery</button>
+      return `<div class="bg-white/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-md card-hover border border-pink-100 product-card h-full flex flex-col">
+        <div class="img-zoom h-48 sm:h-56 md:h-64"><img loading="lazy" src="${p.img}" class="w-full h-full object-cover" alt="${p.title}"></div>
+        <div class="p-3 flex-1 flex flex-col">
+          <h3 class="font-semibold text-sm sm:text-base">${p.title.substring(0, 30)}${p.title.length > 30 ? '...' : ''}</h3>
+          <div class="flex justify-between items-center mt-2"><span class="font-bold text-rose-600 text-base sm:text-lg">${formatPrice(p.price)}</span></div>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="trust-badge text-[9px] sm:text-[10px]">✅ COD Available</span><span class="trust-badge text-[9px] sm:text-[10px]">🔒 Secure</span><span class="trust-badge text-[9px] sm:text-[10px]">⭐ ${p.rating} ★</span></div>
+          <div class="flex flex-col sm:flex-row gap-2 mt-3">
+            <button onclick='buyNow(${JSON.stringify(p)})' class="flex-1 bg-rose-500 hover:bg-rose-600 text-white py-2 rounded-full text-[11px] sm:text-xs transition"><i class="fas fa-credit-card"></i> Online</button>
+            <button onclick='redirectToCOD("${p.title}", ${p.price})' class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-full text-[11px] sm:text-xs transition"><i class="fas fa-money-bill-wave"></i> COD</button>
           </div>
         </div>
       </div>`; 
@@ -383,7 +381,6 @@
       showPage('orderPage'); 
     }
     
-    // Render homepage products
     function renderHomepageProducts() {
       const initialContainer = document.getElementById('initialProductsGrid');
       const allContainer = document.getElementById('allProductsGrid');
@@ -391,7 +388,6 @@
       if (allContainer) allContainer.innerHTML = remainingProducts.map(p => renderProductCard(p)).join('');
     }
     
-    // View All Products Toggle with Animation
     let isAllProductsVisible = false;
     const allProductsWrapper = document.getElementById('allProductsWrapper');
     const viewAllBtn = document.getElementById('viewAllProductsBtn');
@@ -399,20 +395,15 @@
     if (viewAllBtn) {
       viewAllBtn.addEventListener('click', function() {
         if (!isAllProductsVisible) {
-          // Expand to show all products
           allProductsWrapper.classList.remove('collapsed');
           allProductsWrapper.classList.add('expanded');
-          viewAllBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Show Less <i class="fas fa-arrow-up"></i>';
+          viewAllBtn.innerHTML = '<i class="fas fa-eye-slash"></i> <span class="hidden sm:inline">Show Less</span><span class="sm:hidden">Less</span> <i class="fas fa-arrow-up"></i>';
           isAllProductsVisible = true;
-          // Smooth scroll to reveal the new products
-          setTimeout(() => {
-            allProductsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
+          setTimeout(() => { allProductsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
         } else {
-          // Collapse back to only 2 products
           allProductsWrapper.classList.remove('expanded');
           allProductsWrapper.classList.add('collapsed');
-          viewAllBtn.innerHTML = '<i class="fas fa-eye"></i> View All Products <i class="fas fa-arrow-right"></i>';
+          viewAllBtn.innerHTML = '<i class="fas fa-eye"></i> <span class="hidden sm:inline">View All Products</span><span class="sm:hidden">All</span> <i class="fas fa-arrow-right"></i>';
           isAllProductsVisible = false;
         }
       });
@@ -441,14 +432,14 @@
     }
     
     function renderJournal() { 
-      const posts = [{ title: "5 Summer Dresses That Go Viral", img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400" },{ title: "Glass Skin Routine", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400" },{ title: "Minimalist Capsule Wardrobe", img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400" }]; 
+      const posts = [{ title: "5 Summer Dresses", img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400" },{ title: "Glass Skin Routine", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400" },{ title: "Minimalist Wardrobe", img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400" }]; 
       const container = document.getElementById('blogGrid'); 
-      if(container) container.innerHTML = posts.map(p => `<div class="bg-white/80 rounded-xl overflow-hidden shadow-md"><img class="h-40 w-full object-cover" src="${p.img}"><div class="p-3"><h3 class="font-serif text-lg">${p.title}</h3><a href="#" class="text-rose-500 text-xs mt-2 inline-block">Read more →</a></div></div>`).join(''); 
+      if(container) container.innerHTML = posts.map(p => `<div class="bg-white/80 rounded-xl overflow-hidden shadow-md"><img class="h-40 w-full object-cover" src="${p.img}"><div class="p-3"><h3 class="font-serif text-base sm:text-lg">${p.title}</h3><a href="#" class="text-rose-500 text-xs mt-2 inline-block">Read more →</a></div></div>`).join(''); 
     }
     
     function populateCODDropdown() {
       const select = document.getElementById('codProductSelect');
-      if (select) select.innerHTML = '<option value="">-- Choose a product --</option>' + products.map(p => `<option value="${p.title}" data-price="${p.price}">${p.title} - ${formatPrice(p.price)}</option>`).join('');
+      if (select) select.innerHTML = '<option value="">-- Choose a product --</option>' + products.map(p => `<option value="${p.title}" data-price="${p.price}">${p.title.substring(0, 40)} - ${formatPrice(p.price)}</option>`).join('');
     }
     
     const YOUR_WHATSAPP_NUMBER = "917697735504";
@@ -478,7 +469,7 @@
       if (!phone) { showToast('❌ Please enter your phone number', true); return false; } 
       const phoneDigits = phone.replace(/\D/g, ''); 
       if (phoneDigits.length < 10) { showToast('❌ Please enter a valid phone number', true); return false; } 
-      if (!address) { showToast('❌ Please enter your delivery address', true); return false; } 
+      if (!address) { showToast('❌ Please enter your address', true); return false; } 
       if (!pincode) { showToast('❌ Please enter your pincode', true); return false; } 
       if (pincode.length < 6) { showToast('❌ Please enter a valid 6-digit pincode', true); return false; } 
       if (!quantity || quantity < 1) { showToast('❌ Please enter valid quantity', true); return false; } 
@@ -492,7 +483,7 @@
       const productName = selectedOption?.value || '-'; 
       const price = selectedOption?.getAttribute('data-price') || 0; 
       const total = parseInt(price) * parseInt(quantity); 
-      document.getElementById('summaryProduct').textContent = productName || '-'; 
+      document.getElementById('summaryProduct').textContent = productName.length > 30 ? productName.substring(0, 30) + '...' : productName; 
       document.getElementById('summaryPrice').textContent = price ? `₹${price}` : '-'; 
       document.getElementById('summaryQty').textContent = quantity; 
       document.getElementById('summaryTotal').textContent = total ? `₹${total.toLocaleString('en-IN')}` : '-'; 
@@ -509,13 +500,13 @@
       const submitBtn = document.getElementById('placeCodOrderBtn'); 
       const originalText = submitBtn.innerHTML; 
       submitBtn.disabled = true; 
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing WhatsApp...'; 
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing...'; 
       showToast('🔄 Preparing your COD order...'); 
       setTimeout(() => { 
         try { 
           const whatsappMessage = generateWhatsAppMessage(); 
           const whatsappLink = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${whatsappMessage}`; 
-          showToast('✅ Redirecting to WhatsApp to confirm your COD order...'); 
+          showToast('✅ Redirecting to WhatsApp to confirm...'); 
           window.open(whatsappLink, '_blank'); 
           setTimeout(() => { submitBtn.disabled = false; submitBtn.innerHTML = originalText; }, 2000); 
         } catch (error) { 
@@ -542,21 +533,35 @@
       if(pageId === 'shopPage') renderShopPage(); 
       if(pageId === 'homePage') renderHomepageProducts(); 
       if(pageId === 'orderPage') { updateOrderSummary(); populateCODDropdown(); }
+      closeMobileMenu();
     };
     
     document.getElementById('priceRange')?.addEventListener('input', (e) => { document.getElementById('priceValue').innerText = '₹' + parseInt(e.target.value).toLocaleString('en-IN'); renderShopPage(); });
     document.querySelectorAll('.category-filter').forEach(cb => cb.addEventListener('change', () => renderShopPage()));
     document.getElementById('sortSelect')?.addEventListener('change', () => renderShopPage());
-    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('hidden'));
+    
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        if (!mobileMenu.classList.contains('hidden')) {
+          document.body.classList.add('mobile-nav-open');
+        } else {
+          document.body.classList.remove('mobile-nav-open');
+        }
+      });
+    }
+    
     document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); alert("💌 Message sent! Purnima will reply soon."); e.target.reset(); });
     
     function createFlowers() { 
       const container = document.getElementById('flowerBg'); 
       const flowerSvg = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="#ffb6c1"/><circle cx="35" cy="35" r="12" fill="#ff69b4"/><circle cx="65" cy="35" r="12" fill="#ff69b4"/><circle cx="35" cy="65" r="12" fill="#ff69b4"/><circle cx="65" cy="65" r="12" fill="#ff69b4"/><circle cx="50" cy="50" r="8" fill="#ffeb3b"/></svg>`; 
-      const count = window.innerWidth < 768 ? 30 : 50; 
+      const count = window.innerWidth < 768 ? 25 : 50; 
       for (let i = 0; i < count; i++) { 
         const flower = document.createElement('div'); flower.className = 'flower'; 
-        const size = 20 + Math.random() * 60; 
+        const size = 15 + Math.random() * 50; 
         flower.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*20}s;animation-duration:${15+Math.random()*20}s`; 
         flower.innerHTML = flowerSvg; 
         container.appendChild(flower); 
@@ -564,9 +569,8 @@
     }
     createFlowers();
     
-    setInterval(() => { if(window.innerWidth > 768) { const b=document.createElement('div'); b.className='bubble'; b.style.cssText=`width:${20+Math.random()*50}px;height:${20+Math.random()*50}px;left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s`; document.body.appendChild(b); setTimeout(()=>b.remove(),15000); } }, 3000);
+    setInterval(() => { if(window.innerWidth > 768) { const b=document.createElement('div'); b.className='bubble'; b.style.cssText=`width:${20+Math.random()*50}px;height:${20+Math.random()*50}px;left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s`; document.body.appendChild(b); setTimeout(()=>b.remove(),15000); } }, 4000);
     
-    // Initialize
     showPage('homePage'); 
     renderJournal(); 
     renderHomepageProducts();
