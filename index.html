@@ -32,7 +32,6 @@
     .img-zoom { overflow: hidden; border-radius: 1.25rem; }
     .img-zoom img { transition: transform 0.6s ease; width: 100%; height: 100%; object-fit: cover; }
     .img-zoom:hover img { transform: scale(1.08); }
-    .star-rating { color: #ffb347; letter-spacing: 2px; }
     .sidebar-glass { background: rgba(255, 240, 245, 0.8); backdrop-filter: blur(8px); border-radius: 1.5rem; }
     input, textarea, select { transition: all 0.2s; }
     input:focus, textarea:focus { border-color: #ffb6c1; outline: none; box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.3); }
@@ -51,18 +50,65 @@
     @media (max-width: 640px) { h1 { font-size: 1.8rem !important; } .hero-text h1 { font-size: 2rem !important; } .grid { gap: 1rem; } }
     button, .filter-chip, .category-card, .product-card button { cursor: pointer; min-height: 44px; }
     html { scroll-padding-top: 80px; }
-    .payment-method { border: 2px solid #fce4e0; transition: all 0.3s ease; }
-    .payment-method.active { border-color: #ff69b4; background: linear-gradient(135deg, #fff0f3, #ffe4ec); }
     .trust-badge-large { background: linear-gradient(135deg, #f8f0f2, #fff5f7); border: 1px solid #ffd6e0; }
     @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(255, 105, 180, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); } }
     .trust-pulse { animation: pulse-glow 2s infinite; }
+    
+    /* Products container animation */
+    .products-container {
+      transition: all 0.5s ease-in-out;
+      overflow: hidden;
+    }
+    .products-wrapper {
+      transition: transform 0.5s ease-in-out, opacity 0.4s ease-in-out;
+    }
+    .products-wrapper.collapsed {
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-20px);
+      visibility: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    .products-wrapper.expanded {
+      max-height: 3000px;
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    .view-all-btn {
+      transition: all 0.3s ease;
+    }
+    .view-all-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px -5px rgba(255, 105, 180, 0.4);
+    }
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      background: #ff69b4;
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    }
+    .scroll-top-btn:hover { background: #ff3388; transform: scale(1.1); }
+    .scroll-top-btn.show { display: flex; }
   </style>
 </head>
 <body>
 
   <div class="flower-bg" id="flowerBg"></div>
 
-  <!-- Trust Bar - Top Notification -->
+  <!-- Trust Bar -->
   <div class="fixed top-16 md:top-20 left-0 right-0 z-40 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-center py-2 text-xs sm:text-sm font-medium">
     <i class="fas fa-shield-alt mr-1"></i> 100% SECURE & TRUSTED | FREE SHIPPING ON ALL ORDERS | COD AVAILABLE
   </div>
@@ -97,13 +143,14 @@
   </header>
 
   <div class="back-button" id="backButton" onclick="goBack()"><i class="fas fa-arrow-left"></i></div>
+  <div class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></div>
 
   <main class="pt-24 sm:pt-28 md:pt-32 content">
     
     <!-- HOME PAGE -->
     <div id="homePage" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
       
-      <!-- Trust Indicators Strip -->
+      <!-- Trust Indicators -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8" data-aos="fade-up">
         <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-truck text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">Free Shipping</p><p class="text-[10px] text-stone-500">All India</p></div>
         <div class="bg-white/60 rounded-xl p-3 text-center"><i class="fas fa-rupee-sign text-rose-500 text-xl mb-1"></i><p class="text-xs font-semibold">COD Available</p><p class="text-[10px] text-stone-500">Pay on Delivery</p></div>
@@ -153,7 +200,7 @@
         </div>
       </div>
 
-      <!-- Trust Badges Section -->
+      <!-- Trust Badges -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12" data-aos="fade-up">
         <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-check-circle text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">100% Authentic</p><p class="text-xs text-stone-500">No counterfeit products</p></div>
         <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-lock text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">Secure Payments</p><p class="text-xs text-stone-500">SSL encrypted checkout</p></div>
@@ -161,19 +208,35 @@
         <div class="trust-badge-large rounded-xl p-4 text-center"><i class="fas fa-headset text-green-500 text-2xl mb-2"></i><p class="font-semibold text-sm">24/7 Support</p><p class="text-xs text-stone-500">WhatsApp assistance</p></div>
       </div>
 
+      <!-- TRENDING NOW with View All Button -->
       <div class="mb-12 md:mb-16" data-aos="fade-up">
-        <h2 class="text-2xl sm:text-3xl font-serif text-center mb-2">🔥 Trending Now</h2>
-        <p class="text-center text-stone-500 text-sm sm:text-base mb-6 sm:mb-8">Viral picks loved by our community</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto" id="trendingGrid"></div>
+        <div class="flex flex-wrap justify-between items-center mb-6">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-serif">🔥 Trending Now</h2>
+            <p class="text-stone-500 text-sm">Viral picks loved by our community</p>
+          </div>
+          <button id="viewAllProductsBtn" class="view-all-btn bg-gradient-to-r from-rose-400 to-pink-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md flex items-center gap-2">
+            <i class="fas fa-eye"></i> View All Products
+            <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+          </button>
+        </div>
+        
+        <!-- Initial 2 Products (Always Visible) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto" id="initialProductsGrid"></div>
+        
+        <!-- Hidden Products Container (Animated) -->
+        <div class="products-wrapper collapsed" id="allProductsWrapper">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6" id="allProductsGrid"></div>
+        </div>
       </div>
 
       <!-- Real Customer Testimonials -->
       <div class="bg-rose-50/70 rounded-2xl p-6 mb-12" data-aos="fade-up">
         <h3 class="text-xl font-serif text-center mb-6">💬 What Our Customers Say</h3>
         <div class="grid md:grid-cols-3 gap-4">
-          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Priya S.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Amazing quality! The dress fits perfectly and delivery was super fast. Will definitely order again!"</p></div>
-          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Neha K.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Trustworthy store! Got exactly what I ordered. The packaging was so pretty too 💕"</p></div>
-          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Ritu M.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Best online shopping experience! Quick response on WhatsApp and easy COD option."</p></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Priya S.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Amazing quality! The dress fits perfectly and delivery was super fast!"</p></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Neha K.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Trustworthy store! Got exactly what I ordered. Packaging was so pretty!"</p></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm"><div class="flex items-center gap-2 mb-2"><div class="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center"><i class="fas fa-user text-rose-500 text-sm"></i></div><div><p class="font-semibold text-sm">Ritu M.</p><div class="text-yellow-400 text-xs">★★★★★</div></div></div><p class="text-sm text-stone-600">"Quick response on WhatsApp and easy COD option. Highly recommended!"</p></div>
         </div>
       </div>
 
@@ -181,7 +244,7 @@
       <div class="bg-gradient-to-r from-rose-100 to-pink-100 rounded-2xl p-6 text-center" data-aos="fade-up">
         <i class="fas fa-medal text-rose-500 text-3xl mb-2"></i>
         <h3 class="font-bold text-lg">100% Satisfaction Guarantee</h3>
-        <p class="text-sm text-stone-600 mt-1">Not happy with your purchase? We offer easy returns & refunds within 7 days. No questions asked!</p>
+        <p class="text-sm text-stone-600 mt-1">Not happy with your purchase? Easy returns & refunds within 7 days. No questions asked!</p>
       </div>
     </div>
 
@@ -203,7 +266,7 @@
         <h2 class="text-2xl sm:text-3xl font-serif text-rose-600 text-center mb-2">📦 Place Your Order (COD)</h2>
         <p class="text-stone-500 text-center mb-6">Cash on Delivery - Pay when you receive the product</p>
         <form id="codOrderForm" class="space-y-5">
-          <div><label class="block text-stone-700 font-semibold mb-2">Select Product *</label><select id="codProductSelect" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required><option value="">-- Choose a product --</option><option value="Floral Summer Maxi Dress" data-price="599">Floral Summer Maxi Dress - ₹599</option><option value="Elegant Party Wear Dress" data-price="659">Elegant Party Wear Dress - ₹659</option></select></div>
+          <div><label class="block text-stone-700 font-semibold mb-2">Select Product *</label><select id="codProductSelect" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required><option value="">-- Choose a product --</option></select></div>
           <div><label class="block text-stone-700 font-semibold mb-2">Quantity *</label><input type="number" id="codQuantity" min="1" value="1" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></div>
           <div><label class="block text-stone-700 font-semibold mb-2">Full Name *</label><input type="text" id="codName" placeholder="Enter your full name" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required></div>
           <div><label class="block text-stone-700 font-semibold mb-2">Phone Number *</label><input type="tel" id="codPhone" placeholder="Enter your WhatsApp number" class="w-full p-3 rounded-xl border border-rose-200 bg-white focus:border-rose-400 transition" required><p class="text-xs text-stone-400 mt-1">We'll use this to confirm your order</p></div>
@@ -237,38 +300,278 @@
 
   <script>
     AOS.init({ duration: 800, once: true, offset: 30, disable: window.innerWidth < 768 ? true : false });
-    let pageHistory = ['homePage']; let currentPage = 'homePage';
-    function updateBackButtonVisibility() { const backBtn = document.getElementById('backButton'); if (pageHistory.length > 1 && currentPage !== 'homePage') { backBtn.classList.add('visible'); } else { backBtn.classList.remove('visible'); } }
-    function goBack() { if (pageHistory.length > 1) { pageHistory.pop(); const previousPage = pageHistory[pageHistory.length - 1]; showPage(previousPage, true); } }
-    const products = [{ id: 1, title: "Floral Summer Maxi Dress", category: "dresses", price: 599, rating: 4.9, img: "pr2.png", desc: "Beautiful floral print maxi dress.", benefits: ["Lightweight fabric", "Floral pattern", "Perfect for casual"], perfectFor: "Daily Wear", stock: 15, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },{ id: 2, title: "Elegant Party Wear Dress", category: "dresses", price: 659, rating: 4.8, img: "pr3.png", desc: "Stunning party dress.", benefits: ["Elegant design", "Comfortable fit", "Perfect for parties"], perfectFor: "Party, Date Night", stock: 10, paymentLink: "https://rzp.io/rzp/IFbAAG1" }];
-    const trending = products.slice(0, 2); const DEFAULT_PAYMENT_LINK = "https://rzp.io/rzp/b9rSVPE";
-    function buyNow(product) { const paymentLink = product.paymentLink || DEFAULT_PAYMENT_LINK; showToast(`✨ Redirecting to secure payment for ${product.title}...`, 2000); window.open(paymentLink, '_blank'); }
-    function showToast(msg, duration) { const toast = document.createElement('div'); toast.className = 'fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-rose-500 text-white shadow-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm z-50 transition-all whitespace-nowrap'; toast.innerText = msg; document.body.appendChild(toast); setTimeout(() => toast.remove(), duration); }
+    
+    // ========== PRODUCTS DATABASE ==========
+    const products = [
+      { id: 1, title: "Floral Summer Maxi Dress", category: "dresses", price: 599, rating: 4.9, img: "pr2.png", desc: "Beautiful floral print maxi dress perfect for summer days.", benefits: ["Lightweight breathable fabric", "Beautiful floral pattern", "Perfect for casual outings"], perfectFor: "Daily Wear, Casual", stock: 15, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
+      { id: 2, title: "Elegant Party Wear Dress", category: "dresses", price: 659, rating: 4.8, img: "pr3.png", desc: "Stunning party dress for special occasions and celebrations.", benefits: ["Elegant design", "Comfortable fit", "Perfect for parties & events"], perfectFor: "Party, Date Night", stock: 10, paymentLink: "https://rzp.io/rzp/IFbAAG1" },
+      { id: 3, title: "Casual Cotton Kurti", category: "dresses", price: 599, rating: 4.7, img: "pr4.png", desc: "Comfortable cotton kurti for daily wear.", benefits: ["100% Cotton", "Breathable fabric", "Easy to style"], perfectFor: "Office, Daily Wear", stock: 20, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
+      { id: 4, title: "Rosetta Bow-Strap Maxi", category: "dresses", price: 599, rating: 4.9, img: "pr5.png", desc: "Rosetta Bow-Strap Maxi", benefits: ["Heavy embroidery", "Premium fabric", "Perfect for weddings"], perfectFor: "Wedding, Party", stock: 8, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
+      { id: 5, title: "The Sienna Smocked Maroon Floral Maxi", category: "dresses", price: 499, rating: 4.6, img: "pr6.png", desc: "Lightweight beach dress for vacation.", benefits: ["Breathable cotton", "Quick dry", "Perfect for beach"], perfectFor: "Beach, Vacation", stock: 25, paymentLink: "https://rzp.io/rzp/6Gr7mwV4" },
+      <!-- { id: 6, title: "Office Formal Dress", category: "dresses", price: 1099, rating: 4.8, img: "pr7.png", desc: "Elegant formal dress for office wear.", benefits: ["Professional look", "Comfortable fit", "Wrinkle-free"], perfectFor: "Office, Business", stock: 12, paymentLink: "https://rzp.io/rzp/IFbAAG1" } -->
+    ];
+
+    // Initial 2 products for homepage
+    const initialProducts = products.slice(0, 2);
+    const remainingProducts = products.slice(2);
+
+    // Page navigation
+    let pageHistory = ['homePage']; 
+    let currentPage = 'homePage';
+    
+    function updateBackButtonVisibility() { 
+      const backBtn = document.getElementById('backButton'); 
+      if (pageHistory.length > 1 && currentPage !== 'homePage') { 
+        backBtn.classList.add('visible'); 
+      } else { 
+        backBtn.classList.remove('visible'); 
+      } 
+    }
+    
+    function goBack() { 
+      if (pageHistory.length > 1) { 
+        pageHistory.pop(); 
+        const previousPage = pageHistory[pageHistory.length - 1]; 
+        showPage(previousPage, true); 
+      } 
+    }
+    
+    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    
+    window.addEventListener('scroll', function() {
+      const scrollBtn = document.getElementById('scrollTopBtn');
+      if (window.scrollY > 300) scrollBtn.classList.add('show');
+      else scrollBtn.classList.remove('show');
+    });
+    
+    const DEFAULT_PAYMENT_LINK = "https://rzp.io/rzp/b9rSVPE";
+    
+    function buyNow(product) { 
+      const paymentLink = product.paymentLink || DEFAULT_PAYMENT_LINK; 
+      showToast(`✨ Redirecting to secure payment for ${product.title}...`, 2000); 
+      window.open(paymentLink, '_blank'); 
+    }
+    
+    function showToast(msg, duration) { 
+      const toast = document.createElement('div'); 
+      toast.className = 'fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-rose-500 text-white shadow-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm z-50 transition-all whitespace-nowrap'; 
+      toast.innerText = msg; 
+      document.body.appendChild(toast); 
+      setTimeout(() => toast.remove(), duration); 
+    }
+    
     function formatPrice(price) { return '₹' + price.toLocaleString('en-IN'); }
-    function renderProductCard(p) { return `<div class="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden shadow-md card-hover border border-pink-100 product-card h-full flex flex-col"><div class="img-zoom h-64 sm:h-72"><img loading="lazy" src="${p.img}" class="w-full h-full object-cover" alt="${p.title}"></div><div class="p-3 sm:p-4 flex-1 flex flex-col"><h3 class="font-semibold text-base sm:text-lg">${p.title}</h3><div class="flex justify-between items-center mt-2"><span class="font-bold text-rose-600 text-lg sm:text-xl">${formatPrice(p.price)}</span></div><div class="flex flex-wrap gap-1 sm:gap-2 mt-2"><span class="trust-badge text-[10px] sm:text-xs">✅ COD Available</span><span class="trust-badge text-[10px] sm:text-xs">🔒 Secure</span><span class="trust-badge text-[10px] sm:text-xs">⭐ 4.9 ★</span></div><div class="flex gap-2 mt-3"><button onclick='buyNow(${JSON.stringify(p)})' class="flex-1 bg-rose-500 hover:bg-rose-600 text-white py-2 rounded-full text-xs transition"><i class="fas fa-credit-card"></i> Online Pay</button><button onclick='redirectToCOD("${p.title}", ${p.price})' class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-full text-xs transition"><i class="fas fa-money-bill-wave"></i> Cash on Delivery</button></div></div></div>`; }
-    function redirectToCOD(productName, productPrice) { sessionStorage.setItem('codProduct', productName); sessionStorage.setItem('codPrice', productPrice); showPage('orderPage'); }
-    function renderTrending() { const container = document.getElementById('trendingGrid'); if(container) container.innerHTML = trending.map(p => renderProductCard(p)).join(''); }
-    function renderShopPage() { const shopGrid = document.getElementById('shopGrid'); if (!shopGrid) return; let filtered = [...products]; const maxPrice = parseInt(document.getElementById('priceRange')?.value || 1000); const checkedCats = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value); if (checkedCats.length) filtered = filtered.filter(p => checkedCats.includes(p.category)); filtered = filtered.filter(p => p.price <= maxPrice); const sortBy = document.getElementById('sortSelect')?.value; if (sortBy === 'priceLow') filtered.sort((a,b) => a.price - b.price); if (sortBy === 'priceHigh') filtered.sort((a,b) => b.price - a.price); shopGrid.innerHTML = filtered.map(p => renderProductCard(p)).join(''); attachStickyBuyListeners(); }
-    function attachStickyBuyListeners() { const btns = document.querySelectorAll('.product-card button'); const stickyBtn = document.getElementById('stickyBuyBtn'); if(btns.length && stickyBtn) stickyBtn.style.display = 'flex'; else if(stickyBtn) stickyBtn.style.display = 'none'; }
-    function renderJournal() { const posts = [{ title: "5 Summer Dresses That Go Viral", img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400" },{ title: "Glass Skin Routine", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400" },{ title: "Minimalist Capsule Wardrobe", img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400" }]; const container = document.getElementById('blogGrid'); if(container) container.innerHTML = posts.map(p => `<div class="bg-white/80 rounded-xl overflow-hidden shadow-md"><img class="h-40 w-full object-cover" src="${p.img}"><div class="p-3"><h3 class="font-serif text-lg">${p.title}</h3><a href="#" class="text-rose-500 text-xs mt-2 inline-block">Read more →</a></div></div>`).join(''); }
+    
+    function renderProductCard(p) { 
+      return `<div class="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden shadow-md card-hover border border-pink-100 product-card h-full flex flex-col">
+        <div class="img-zoom h-64 sm:h-72"><img loading="lazy" src="${p.img}" class="w-full h-full object-cover" alt="${p.title}"></div>
+        <div class="p-3 sm:p-4 flex-1 flex flex-col">
+          <h3 class="font-semibold text-base sm:text-lg">${p.title}</h3>
+          <div class="flex justify-between items-center mt-2"><span class="font-bold text-rose-600 text-lg sm:text-xl">${formatPrice(p.price)}</span></div>
+          <div class="flex flex-wrap gap-1 sm:gap-2 mt-2"><span class="trust-badge text-[10px] sm:text-xs">✅ COD Available</span><span class="trust-badge text-[10px] sm:text-xs">🔒 Secure</span><span class="trust-badge text-[10px] sm:text-xs">⭐ ${p.rating} ★</span></div>
+          <div class="flex gap-2 mt-3">
+            <button onclick='buyNow(${JSON.stringify(p)})' class="flex-1 bg-rose-500 hover:bg-rose-600 text-white py-2 rounded-full text-xs transition"><i class="fas fa-credit-card"></i> Online Pay</button>
+            <button onclick='redirectToCOD("${p.title}", ${p.price})' class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-full text-xs transition"><i class="fas fa-money-bill-wave"></i> Cash on Delivery</button>
+          </div>
+        </div>
+      </div>`; 
+    }
+    
+    function redirectToCOD(productName, productPrice) { 
+      sessionStorage.setItem('codProduct', productName); 
+      sessionStorage.setItem('codPrice', productPrice); 
+      showPage('orderPage'); 
+    }
+    
+    // Render homepage products
+    function renderHomepageProducts() {
+      const initialContainer = document.getElementById('initialProductsGrid');
+      const allContainer = document.getElementById('allProductsGrid');
+      if (initialContainer) initialContainer.innerHTML = initialProducts.map(p => renderProductCard(p)).join('');
+      if (allContainer) allContainer.innerHTML = remainingProducts.map(p => renderProductCard(p)).join('');
+    }
+    
+    // View All Products Toggle with Animation
+    let isAllProductsVisible = false;
+    const allProductsWrapper = document.getElementById('allProductsWrapper');
+    const viewAllBtn = document.getElementById('viewAllProductsBtn');
+    
+    if (viewAllBtn) {
+      viewAllBtn.addEventListener('click', function() {
+        if (!isAllProductsVisible) {
+          // Expand to show all products
+          allProductsWrapper.classList.remove('collapsed');
+          allProductsWrapper.classList.add('expanded');
+          viewAllBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Show Less <i class="fas fa-arrow-up"></i>';
+          isAllProductsVisible = true;
+          // Smooth scroll to reveal the new products
+          setTimeout(() => {
+            allProductsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        } else {
+          // Collapse back to only 2 products
+          allProductsWrapper.classList.remove('expanded');
+          allProductsWrapper.classList.add('collapsed');
+          viewAllBtn.innerHTML = '<i class="fas fa-eye"></i> View All Products <i class="fas fa-arrow-right"></i>';
+          isAllProductsVisible = false;
+        }
+      });
+    }
+    
+    function renderShopPage() { 
+      const shopGrid = document.getElementById('shopGrid'); 
+      if (!shopGrid) return; 
+      let filtered = [...products]; 
+      const maxPrice = parseInt(document.getElementById('priceRange')?.value || 1000); 
+      const checkedCats = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value); 
+      if (checkedCats.length) filtered = filtered.filter(p => checkedCats.includes(p.category)); 
+      filtered = filtered.filter(p => p.price <= maxPrice); 
+      const sortBy = document.getElementById('sortSelect')?.value; 
+      if (sortBy === 'priceLow') filtered.sort((a,b) => a.price - b.price); 
+      if (sortBy === 'priceHigh') filtered.sort((a,b) => b.price - a.price); 
+      shopGrid.innerHTML = filtered.map(p => renderProductCard(p)).join(''); 
+      attachStickyBuyListeners(); 
+    }
+    
+    function attachStickyBuyListeners() { 
+      const btns = document.querySelectorAll('.product-card button'); 
+      const stickyBtn = document.getElementById('stickyBuyBtn'); 
+      if(btns.length && stickyBtn) stickyBtn.style.display = 'flex'; 
+      else if(stickyBtn) stickyBtn.style.display = 'none'; 
+    }
+    
+    function renderJournal() { 
+      const posts = [{ title: "5 Summer Dresses That Go Viral", img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400" },{ title: "Glass Skin Routine", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400" },{ title: "Minimalist Capsule Wardrobe", img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400" }]; 
+      const container = document.getElementById('blogGrid'); 
+      if(container) container.innerHTML = posts.map(p => `<div class="bg-white/80 rounded-xl overflow-hidden shadow-md"><img class="h-40 w-full object-cover" src="${p.img}"><div class="p-3"><h3 class="font-serif text-lg">${p.title}</h3><a href="#" class="text-rose-500 text-xs mt-2 inline-block">Read more →</a></div></div>`).join(''); 
+    }
+    
+    function populateCODDropdown() {
+      const select = document.getElementById('codProductSelect');
+      if (select) select.innerHTML = '<option value="">-- Choose a product --</option>' + products.map(p => `<option value="${p.title}" data-price="${p.price}">${p.title} - ${formatPrice(p.price)}</option>`).join('');
+    }
+    
     const YOUR_WHATSAPP_NUMBER = "917697735504";
-    function generateWhatsAppMessage() { const product = document.getElementById('codProductSelect')?.value; const quantity = document.getElementById('codQuantity')?.value || 1; const name = document.getElementById('codName')?.value.trim(); const phone = document.getElementById('codPhone')?.value.trim(); const address = document.getElementById('codAddress')?.value.trim(); const pincode = document.getElementById('codPincode')?.value.trim(); const selectedOption = document.getElementById('codProductSelect')?.options[document.getElementById('codProductSelect').selectedIndex]; const pricePerPiece = selectedOption?.getAttribute('data-price') || 0; const totalPrice = parseInt(pricePerPiece) * parseInt(quantity); return `🛍️ *NEW COD ORDER* 🛍️%0A%0A📦 *Product:* ${product}%0A• Quantity: ${quantity}%0A• Total: ₹${totalPrice}%0A%0A👤 *Customer:* ${name}%0A📞 *Phone:* ${phone}%0A📍 *Address:* ${address}%0A📮 *Pincode:* ${pincode}%0A%0A⏰ *Time:* ${new Date().toLocaleString()}%0A💵 *Payment:* Cash on Delivery`; }
-    function validateCODOrder() { const product = document.getElementById('codProductSelect')?.value; const name = document.getElementById('codName')?.value.trim(); const phone = document.getElementById('codPhone')?.value.trim(); const address = document.getElementById('codAddress')?.value.trim(); const pincode = document.getElementById('codPincode')?.value.trim(); const quantity = document.getElementById('codQuantity')?.value; if (!product) { showToast('❌ Please select a product', true); return false; } if (!name) { showToast('❌ Please enter your name', true); return false; } if (!phone) { showToast('❌ Please enter your phone number', true); return false; } const phoneDigits = phone.replace(/\D/g, ''); if (phoneDigits.length < 10) { showToast('❌ Please enter a valid phone number', true); return false; } if (!address) { showToast('❌ Please enter your delivery address', true); return false; } if (!pincode) { showToast('❌ Please enter your pincode', true); return false; } if (pincode.length < 6) { showToast('❌ Please enter a valid 6-digit pincode', true); return false; } if (!quantity || quantity < 1) { showToast('❌ Please enter valid quantity', true); return false; } return true; }
-    function updateOrderSummary() { const select = document.getElementById('codProductSelect'); const quantity = document.getElementById('codQuantity')?.value || 1; const selectedOption = select?.options[select.selectedIndex]; const productName = selectedOption?.value || '-'; const price = selectedOption?.getAttribute('data-price') || 0; const total = parseInt(price) * parseInt(quantity); document.getElementById('summaryProduct').textContent = productName || '-'; document.getElementById('summaryPrice').textContent = price ? `₹${price}` : '-'; document.getElementById('summaryQty').textContent = quantity; document.getElementById('summaryTotal').textContent = total ? `₹${total.toLocaleString('en-IN')}` : '-'; }
-    if (document.getElementById('codProductSelect')) { document.getElementById('codProductSelect').addEventListener('change', updateOrderSummary); document.getElementById('codQuantity').addEventListener('input', updateOrderSummary); }
-    async function handleCODOrderSubmit(event) { event.preventDefault(); if (!validateCODOrder()) return; const submitBtn = document.getElementById('placeCodOrderBtn'); const originalText = submitBtn.innerHTML; submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing WhatsApp...'; showToast('🔄 Preparing your COD order...'); setTimeout(() => { try { const whatsappMessage = generateWhatsAppMessage(); const whatsappLink = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${whatsappMessage}`; showToast('✅ Redirecting to WhatsApp to confirm your COD order...'); window.open(whatsappLink, '_blank'); setTimeout(() => { submitBtn.disabled = false; submitBtn.innerHTML = originalText; }, 2000); } catch (error) { showToast('❌ Something went wrong. Please try again.', true); submitBtn.disabled = false; submitBtn.innerHTML = originalText; } }, 500); }
-    const codForm = document.getElementById('codOrderForm'); if (codForm) codForm.addEventListener('submit', handleCODOrderSubmit);
+    
+    function generateWhatsAppMessage() { 
+      const product = document.getElementById('codProductSelect')?.value; 
+      const quantity = document.getElementById('codQuantity')?.value || 1; 
+      const name = document.getElementById('codName')?.value.trim(); 
+      const phone = document.getElementById('codPhone')?.value.trim(); 
+      const address = document.getElementById('codAddress')?.value.trim(); 
+      const pincode = document.getElementById('codPincode')?.value.trim(); 
+      const selectedOption = document.getElementById('codProductSelect')?.options[document.getElementById('codProductSelect').selectedIndex]; 
+      const pricePerPiece = selectedOption?.getAttribute('data-price') || 0; 
+      const totalPrice = parseInt(pricePerPiece) * parseInt(quantity); 
+      return `🛍️ *NEW COD ORDER* 🛍️%0A%0A📦 *Product:* ${product}%0A• Quantity: ${quantity}%0A• Total: ₹${totalPrice}%0A%0A👤 *Customer:* ${name}%0A📞 *Phone:* ${phone}%0A📍 *Address:* ${address}%0A📮 *Pincode:* ${pincode}%0A%0A⏰ *Time:* ${new Date().toLocaleString()}%0A💵 *Payment:* Cash on Delivery`; 
+    }
+    
+    function validateCODOrder() { 
+      const product = document.getElementById('codProductSelect')?.value; 
+      const name = document.getElementById('codName')?.value.trim(); 
+      const phone = document.getElementById('codPhone')?.value.trim(); 
+      const address = document.getElementById('codAddress')?.value.trim(); 
+      const pincode = document.getElementById('codPincode')?.value.trim(); 
+      const quantity = document.getElementById('codQuantity')?.value; 
+      if (!product) { showToast('❌ Please select a product', true); return false; } 
+      if (!name) { showToast('❌ Please enter your name', true); return false; } 
+      if (!phone) { showToast('❌ Please enter your phone number', true); return false; } 
+      const phoneDigits = phone.replace(/\D/g, ''); 
+      if (phoneDigits.length < 10) { showToast('❌ Please enter a valid phone number', true); return false; } 
+      if (!address) { showToast('❌ Please enter your delivery address', true); return false; } 
+      if (!pincode) { showToast('❌ Please enter your pincode', true); return false; } 
+      if (pincode.length < 6) { showToast('❌ Please enter a valid 6-digit pincode', true); return false; } 
+      if (!quantity || quantity < 1) { showToast('❌ Please enter valid quantity', true); return false; } 
+      return true; 
+    }
+    
+    function updateOrderSummary() { 
+      const select = document.getElementById('codProductSelect'); 
+      const quantity = document.getElementById('codQuantity')?.value || 1; 
+      const selectedOption = select?.options[select.selectedIndex]; 
+      const productName = selectedOption?.value || '-'; 
+      const price = selectedOption?.getAttribute('data-price') || 0; 
+      const total = parseInt(price) * parseInt(quantity); 
+      document.getElementById('summaryProduct').textContent = productName || '-'; 
+      document.getElementById('summaryPrice').textContent = price ? `₹${price}` : '-'; 
+      document.getElementById('summaryQty').textContent = quantity; 
+      document.getElementById('summaryTotal').textContent = total ? `₹${total.toLocaleString('en-IN')}` : '-'; 
+    }
+    
+    if (document.getElementById('codProductSelect')) { 
+      document.getElementById('codProductSelect').addEventListener('change', updateOrderSummary); 
+      document.getElementById('codQuantity').addEventListener('input', updateOrderSummary); 
+    }
+    
+    async function handleCODOrderSubmit(event) { 
+      event.preventDefault(); 
+      if (!validateCODOrder()) return; 
+      const submitBtn = document.getElementById('placeCodOrderBtn'); 
+      const originalText = submitBtn.innerHTML; 
+      submitBtn.disabled = true; 
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing WhatsApp...'; 
+      showToast('🔄 Preparing your COD order...'); 
+      setTimeout(() => { 
+        try { 
+          const whatsappMessage = generateWhatsAppMessage(); 
+          const whatsappLink = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${whatsappMessage}`; 
+          showToast('✅ Redirecting to WhatsApp to confirm your COD order...'); 
+          window.open(whatsappLink, '_blank'); 
+          setTimeout(() => { submitBtn.disabled = false; submitBtn.innerHTML = originalText; }, 2000); 
+        } catch (error) { 
+          showToast('❌ Something went wrong. Please try again.', true); 
+          submitBtn.disabled = false; 
+          submitBtn.innerHTML = originalText; 
+        } 
+      }, 500); 
+    }
+    
+    const codForm = document.getElementById('codOrderForm'); 
+    if (codForm) codForm.addEventListener('submit', handleCODOrderSubmit);
+    
     const pages = ['homePage', 'shopPage', 'orderPage', 'journalPage', 'aboutPage', 'contactPage'];
-    window.showPage = function(pageId, skipHistory = false) { pages.forEach(p => document.getElementById(p).classList.add('hidden')); document.getElementById(pageId).classList.remove('hidden'); if (!skipHistory && pageId !== currentPage) { pageHistory.push(pageId); currentPage = pageId; } else if (skipHistory) currentPage = pageId; else if (pageId !== currentPage) { pageHistory.push(pageId); currentPage = pageId; } updateBackButtonVisibility(); window.scrollTo({ top: 0, behavior: 'smooth' }); if(pageId === 'shopPage') renderShopPage(); if(pageId === 'homePage') renderTrending(); if(pageId === 'orderPage') updateOrderSummary(); };
+    
+    window.showPage = function(pageId, skipHistory = false) { 
+      pages.forEach(p => document.getElementById(p).classList.add('hidden')); 
+      document.getElementById(pageId).classList.remove('hidden'); 
+      if (!skipHistory && pageId !== currentPage) { pageHistory.push(pageId); currentPage = pageId; } 
+      else if (skipHistory) currentPage = pageId; 
+      else if (pageId !== currentPage) { pageHistory.push(pageId); currentPage = pageId; } 
+      updateBackButtonVisibility(); 
+      window.scrollTo({ top: 0, behavior: 'smooth' }); 
+      if(pageId === 'shopPage') renderShopPage(); 
+      if(pageId === 'homePage') renderHomepageProducts(); 
+      if(pageId === 'orderPage') { updateOrderSummary(); populateCODDropdown(); }
+    };
+    
     document.getElementById('priceRange')?.addEventListener('input', (e) => { document.getElementById('priceValue').innerText = '₹' + parseInt(e.target.value).toLocaleString('en-IN'); renderShopPage(); });
     document.querySelectorAll('.category-filter').forEach(cb => cb.addEventListener('change', () => renderShopPage()));
     document.getElementById('sortSelect')?.addEventListener('change', () => renderShopPage());
     document.getElementById('mobileMenuBtn')?.addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('hidden'));
     document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); alert("💌 Message sent! Purnima will reply soon."); e.target.reset(); });
-    function createFlowers() { const container = document.getElementById('flowerBg'); const flowerSvg = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="#ffb6c1"/><circle cx="35" cy="35" r="12" fill="#ff69b4"/><circle cx="65" cy="35" r="12" fill="#ff69b4"/><circle cx="35" cy="65" r="12" fill="#ff69b4"/><circle cx="65" cy="65" r="12" fill="#ff69b4"/><circle cx="50" cy="50" r="8" fill="#ffeb3b"/></svg>`; const count = window.innerWidth < 768 ? 30 : 50; for (let i = 0; i < count; i++) { const flower = document.createElement('div'); flower.className = 'flower'; const size = 20 + Math.random() * 60; flower.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*20}s;animation-duration:${15+Math.random()*20}s`; flower.innerHTML = flowerSvg; container.appendChild(flower); } }
+    
+    function createFlowers() { 
+      const container = document.getElementById('flowerBg'); 
+      const flowerSvg = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="#ffb6c1"/><circle cx="35" cy="35" r="12" fill="#ff69b4"/><circle cx="65" cy="35" r="12" fill="#ff69b4"/><circle cx="35" cy="65" r="12" fill="#ff69b4"/><circle cx="65" cy="65" r="12" fill="#ff69b4"/><circle cx="50" cy="50" r="8" fill="#ffeb3b"/></svg>`; 
+      const count = window.innerWidth < 768 ? 30 : 50; 
+      for (let i = 0; i < count; i++) { 
+        const flower = document.createElement('div'); flower.className = 'flower'; 
+        const size = 20 + Math.random() * 60; 
+        flower.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*20}s;animation-duration:${15+Math.random()*20}s`; 
+        flower.innerHTML = flowerSvg; 
+        container.appendChild(flower); 
+      } 
+    }
     createFlowers();
+    
     setInterval(() => { if(window.innerWidth > 768) { const b=document.createElement('div'); b.className='bubble'; b.style.cssText=`width:${20+Math.random()*50}px;height:${20+Math.random()*50}px;left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s`; document.body.appendChild(b); setTimeout(()=>b.remove(),15000); } }, 3000);
-    showPage('homePage'); renderJournal(); renderTrending(); updateBackButtonVisibility();
+    
+    // Initialize
+    showPage('homePage'); 
+    renderJournal(); 
+    renderHomepageProducts();
+    updateBackButtonVisibility();
+    populateCODDropdown();
   </script>
 </body>
 </html>
